@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<a href="/EmployeeUI/Create" class="btn btn-success mb-3">Add new Employee</a>
+
+<h3 class="mb-3">Employee Data</h3>
+
+<div class="mb-3 d-flex">
+    <input type="text" id="searchText" class="form-control me-2" placeholder="Search by name/email" />
+    <button id="btnSearch" class="btn btn-primary">Search</button>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Image</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="employeeTableBody"></tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div class="d-flex justify-content-between">
+    <button id="prevPage" class="btn btn-outline-primary">Previous</button>
+    <span id="currentPageLabel" class="align-self-center">Page 1</span>
+    <button id="nextPage" class="btn  btn-outline-dark">Next</button>
+</div>
+
+<script>
+    let currentPage = 1;
+    const pageSize = 5;
+
+    function loadEmployees(search = "") {
+        $.ajax({
+            url: `/api/Emp/basic?page=${currentPage}&pageSize=${pageSize}&search=${search}`,
+            type: "GET",
+            success: function (data) {
+                let rows = "";
+                if (data.length === 0) {
+                    rows = "<tr><td colspan='5' class='text-center'>No records found</td></tr>";
+                    $("#nextPage").prop("disabled", true);
+                } else {
+                    $.each(data, function (i, emp) {
+                        rows += `
+                                <tr>
+                                    <td><img src="${emp.imageUrl}" width="50" height="50" /></td>
+                                    <td>${emp.firstName}</td>
+                                    <td>${emp.lastName}</td>
+                                    <td>${emp.email}</td>
+                                    <td>
+                                        <a href="/EmployeeUI/Details?id=${emp.id}" class="btn btn-sm btn-info">Details</a>
+                                        <a href="/EmployeeUI/Edit?id=${emp.id}" class="btn btn-sm btn-warning">Edit</a>
+                                        <a href="/EmployeeUI/Delete?id=${emp.id}" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>`;
+                    });
+
+                    // Enable/disable Next button depending on result count
+                    $("#nextPage").prop("disabled", data.length < pageSize);
+                }
+
+                $("#employeeTableBody").html(rows);
+                $("#currentPageLabel").text("Page " + currentPage);
+            },
+            error: function () {
+                alert("Failed to load data.");
+            }
+        });
+    }
+
+    function reload() {
+        const search = $("#searchText").val();
+        loadEmployees(search);
+    }
+
+    $(document).ready(function () {
+        reload();
+
+        $("#btnSearch").click(function () {
+            currentPage = 1;
+            reload();
+        });
+
+        $("#prevPage").click(function () {
+            if (currentPage > 1) {
+                currentPage--;
+                reload();
+            }
+        });
+
+        $("#nextPage").click(function () {
+            currentPage++;
+            reload();
+        });
+    });
+</script>

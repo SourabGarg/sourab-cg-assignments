@@ -1,0 +1,156 @@
+@model MVC_Demo_Project.Models.Department
+@{
+    ViewData["Title"] = "Department Details";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    .container {
+        max-width: 900px;
+        margin: 40px auto;
+    }
+
+    .detail-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+
+    .detail-header {
+        background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .detail-icon {
+        font-size: 60px;
+        margin-bottom: 15px;
+        opacity: 0.9;
+    }
+
+    .detail-header h1 {
+        margin: 0;
+        font-size: 32px;
+    }
+
+    .detail-body {
+        padding: 30px;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: #27ae60;
+        min-width: 150px;
+    }
+
+    .detail-value {
+        color: #333;
+        flex: 1;
+        text-align: right;
+    }
+
+    .description-box {
+        background-color: #e8f8f5;
+        padding: 15px;
+        border-left: 4px solid #27ae60;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .employee-count {
+        background-color: #f0f8ff;
+        padding: 15px;
+        border-left: 4px solid #4a90d9;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #4a90d9;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #357abd;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+<div class="container">
+    <div class="detail-card">
+        <div class="detail-header">
+            <div class="detail-icon">
+                <i class="fas fa-building"></i>
+            </div>
+            <h1>@Model.DepartmentName</h1>
+        </div>
+        <div class="detail-body">
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-id-badge"></i> Department ID:</span>
+                <span class="detail-value">@Model.DepartmentId</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-book"></i> Department Name:</span>
+                <span class="detail-value">@Model.DepartmentName</span>
+            </div>
+            <div class="description-box">
+                <strong><i class="fas fa-info-circle"></i> Description:</strong>
+                <p>@Model.Description</p>
+            </div>
+            
+            @if (Model.Employees != null && Model.Employees.Count > 0)
+            {
+                <div class="employee-count">
+                    <strong><i class="fas fa-users"></i> Employees in this department:</strong>
+                    <p>@Model.Employees.Count total employees</p>
+                </div>
+            }
+
+            <div class="button-group">
+                <a href="@Url.Action("DepartmentEmployees", "Home", new { id = Model.DepartmentId })" class="btn btn-primary">
+                    <i class="fas fa-list"></i> View Employees
+                </a>
+                <a href="@Url.Action("ListDepartments", "Home")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Department List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

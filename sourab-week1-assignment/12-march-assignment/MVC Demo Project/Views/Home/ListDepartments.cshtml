@@ -1,0 +1,149 @@
+@model List<MVC_Demo_Project.Models.Department>
+@{
+    ViewData["Title"] = "Department List";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    .departments-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .department-card {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .department-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .dept-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        color: white;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .dept-avatar-1 { background-color: #3498db; }
+    .dept-avatar-2 { background-color: #e74c3c; }
+    .dept-avatar-3 { background-color: #2ecc71; }
+    .dept-avatar-4 { background-color: #f39c12; }
+
+    .dept-info {
+        flex: 1;
+    }
+
+    .dept-info h4 {
+        margin: 0;
+        color: #333;
+    }
+
+    .dept-info p {
+        margin: 5px 0 0 0;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .dept-meta {
+        display: flex;
+        gap: 15px;
+        margin-top: 8px;
+        font-size: 12px;
+    }
+
+    .meta-item {
+        color: #888;
+    }
+
+    .meta-item strong {
+        color: #333;
+    }
+
+    .dept-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .dept-link {
+        padding: 8px 12px;
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s;
+        font-size: 12px;
+    }
+
+    .dept-link:hover {
+        background-color: #229954;
+    }
+
+    .dept-link-secondary {
+        background-color: #4a90d9;
+        color: white;
+    }
+
+    .dept-link-secondary:hover {
+        background-color: #357abd;
+    }
+</style>
+
+<div class="departments-container">
+    <div class="page-header">
+        <h1><i class="fas fa-building"></i> Departments</h1>
+        <p>View all company departments and their employees</p>
+    </div>
+
+    @foreach (var dept in Model)
+    {
+        <div class="department-card">
+            <div class="dept-avatar dept-avatar-@dept.DepartmentId">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="dept-info">
+                <h4>@dept.DepartmentName</h4>
+                <p>@dept.Description</p>
+                <div class="dept-meta">
+                    <span class="meta-item"><i class="fas fa-id-badge"></i> ID: <strong>@dept.DepartmentId</strong></span>
+                    <span class="meta-item"><i class="fas fa-users"></i> Employees: <strong>@dept.Employees.Count</strong></span>
+                </div>
+            </div>
+            <div class="dept-actions">
+                <a href="@Url.Action("DepartmentDetail", "Home", new { id = dept.DepartmentId })" class="dept-link dept-link-secondary" title="View Details">
+                    <i class="fas fa-info-circle"></i> Details
+                </a>
+                <a href="@Url.Action("DepartmentEmployees", "Home", new { id = dept.DepartmentId })" class="dept-link" title="View Employees">
+                    <i class="fas fa-users"></i> Employees
+                </a>
+            </div>
+        </div>
+    }
+</div>

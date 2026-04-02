@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation Demo</title>
+  <script>
+    function validate() {
+      var name = document.myForm.Name.value.trim();
+      var email = document.myForm.EMail.value.trim();
+      var zip = document.myForm.Zip.value.trim();
+      var country = document.myForm.Country.value;
+
+      if (name === "") {
+        alert("Please provide your name!");
+        document.myForm.Name.focus();
+        return false;
+      }
+
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email === "" || !emailPattern.test(email)) {
+        alert("Please provide a valid email address!");
+        document.myForm.EMail.focus();
+        return false;
+      }
+
+      var zipPattern = /^\d{5,6}$/;
+      if (zip === "" || !zipPattern.test(zip)) {
+        alert("Please provide a valid zip code (5 or 6 digits)!");
+        document.myForm.Zip.focus();
+        return false;
+      }
+
+      if (country === "-1") {
+        alert("Please select your country!");
+        document.myForm.Country.focus();
+        return false;
+      }
+
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</head>
+<body>
+<form action="/cgi-bin/test.cgi" name="myForm"  
+          onsubmit="return(validate());">
+ <table cellspacing="2" cellpadding="2" border="1">
+ <tr>
+   <td align="right">Name</td>
+   <td><input type="text" name="Name" /></td>
+ </tr>
+ <tr>
+   <td align="right">Email</td>
+   <td><input type="text" name="EMail" /></td>
+ </tr>
+ <tr>
+   <td align="right">Zip Code</td>
+   <td><input type="text" name="Zip" /></td>
+ </tr>
+ <tr>
+ <td align="right">Country</td>
+ <td>
+ <select name="Country">
+   <option value="-1" selected>[choose yours]</option>
+   <option value="1">USA</option>
+   <option value="2">UK</option>
+   <option value="3">INDIA</option>
+ </select>
+ </td>
+ </tr>
+ <tr>
+   <td align="right"></td>
+   <td><input type="submit" value="Submit" /></td>
+ </tr>
+ </table> </form> 
+</body>
+</html>

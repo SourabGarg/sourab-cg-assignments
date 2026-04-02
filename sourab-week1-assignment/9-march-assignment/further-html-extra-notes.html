@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Further HTML Extra Notes - Forms</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 24px;
+            background: #f9fbff;
+            color: #1f2937;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #0f172a;
+        }
+
+        section {
+            background: #ffffff;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        code,
+        pre {
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        pre {
+            background: #0b1020;
+            color: #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Further HTML Extra Notes</h1>
+
+    <section>
+        <h2>Advantages of Form</h2>
+        <ul>
+            <li>Collecting names, addresses, telephone numbers, e-mail address and other information to register users
+                for a service or an event.</li>
+            <li>Gathering information for purchase of an item, for example when buying a book online we fill all relevant
+                information.</li>
+            <li>Collecting feedback from website users.</li>
+            <li>Providing a search tool for the website, so users can locate information faster.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Form Tag and Attributes</h2>
+        <p>To write a form, we first use the <code>&lt;form&gt;</code> tag.</p>
+        <h3>1) Accept</h3>
+        <p>Defines the list of MIME types recognized by server scripts.</p>
+        <pre>ACCEPT="internet media type"</pre>
+        <p>This attribute is used rarely.</p>
+
+        <h3>2) Action</h3>
+        <p>Tells where the form data should be sent when submit is clicked.</p>
+        <pre>ACTION="URL"</pre>
+
+        <h3>3) Method</h3>
+        <p>Specifies how form data is sent to server. Common values are <code>GET</code> and <code>POST</code>.</p>
+        <pre>&lt;form action="url" method="get"&gt;
+  contents of the form
+&lt;/form&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Example on GET Method</h2>
+        <p>When we send very little non-sensitive data, we can use GET method.</p>
+        <pre>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;form demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Join the Mailing List:&lt;/h2&gt;
+  &lt;form action="doc1.html" method="get"&gt;
+    &lt;pre&gt;
+First Name: &lt;input type="text" name="first"&gt;
+Last Name:  &lt;input type="text" name="last"&gt;
+&lt;input type="submit"&gt;  &lt;input type="reset"&gt;
+    &lt;/pre&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </section>
+
+    <section>
+        <h2>HTML Input Elements</h2>
+        <p>The <code>&lt;input&gt;</code> element defines the type and appearance of controls in a form.</p>
+        <ul>
+            <li><code>type</code>: text, password, checkbox, radio, etc.</li>
+            <li><code>name</code>: control name.</li>
+            <li><code>value</code>: optional control value.</li>
+            <li><code>size</code>: width of text/password controls.</li>
+            <li><code>maxlength</code>: max number of characters allowed.</li>
+            <li><code>checked</code>: boolean attribute for checkbox/radio default selection.</li>
+            <li><code>src</code>: image source when <code>type="image"</code> is used.</li>
+        </ul>
+
+        <h3>Button</h3>
+        <pre>&lt;input type="button" value="click" name="b1"&gt;</pre>
+
+        <h3>Text</h3>
+        <pre>&lt;input type="text" value="" name="username" size="20"&gt;</pre>
+
+        <h3>Checkbox</h3>
+        <pre>&lt;input type="checkbox" name="courses" value="check-box1"&gt; C language &lt;br&gt;
+&lt;input type="checkbox" name="courses" value="check-box2" checked&gt; Java</pre>
+
+        <h3>Submit</h3>
+        <pre>&lt;input type="submit" value="click" name="b1"&gt;</pre>
+
+        <h3>Image Submit</h3>
+        <pre>&lt;input type="image" src="url" name="blue_bulb"&gt;</pre>
+
+        <h3>Reset</h3>
+        <pre>&lt;input type="reset" value="reset" name="b2"&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Form Using POST Method</h2>
+        <pre>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;sample form demo&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor="#ffffcc"&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;form action="doc1.html" method="post"&gt;
+&lt;b&gt;&lt;h2 align="left"&gt;Sample Stock Recovery&lt;/h2&gt;&lt;/b&gt;
+&lt;p&gt;&lt;b&gt;Describe your investment experience&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;input type="radio" name="result-radio1" value="radio-0"&gt;Beginner&lt;br&gt;
+&lt;input type="radio" name="result-radio1" value="radio-1"&gt;Intermediate&lt;br&gt;
+&lt;input type="radio" name="result-radio1" value="radio-2"&gt;Expert&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Types of investments you make&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;
+&lt;input type="checkbox" name="resultcheckbox-1" value="checkbox-0"&gt;Individual stocks&lt;br&gt;
+&lt;input type="checkbox" name="resultcheckbox-1" value="checkbox-1"&gt;Options&lt;br&gt;
+&lt;input type="checkbox" name="resultcheckbox-1" value="checkbox-2"&gt;Mutual funds&lt;br&gt;
+First Name: &lt;input type="text" name="first" size="20"&gt;&lt;br&gt;
+Last Name: &lt;input type="password" name="password" size="10" maxlength="15"&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;input type="submit"&gt;&amp;nbsp;&lt;input type="reset"&gt;&lt;br&gt;
+&lt;/form&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </section>
+
+    <section>
+        <h2>TextArea Element</h2>
+        <p>Creates multiline text input. We specify rows and columns.</p>
+        <pre>&lt;textarea name="text1" cols="20" rows="5"&gt;&lt;/textarea&gt;</pre>
+
+        <h2>Select Element and Optgroup</h2>
+        <p>Select displays a list of options. Each option is represented by <code>&lt;option&gt;</code>.</p>
+        <pre>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Sample Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body bgcolor="pink"&gt;
+&lt;form action="doc1.html" method="post"&gt;
+&lt;b&gt;&lt;center&gt;&lt;h2&gt;Sample stock recovery&lt;/h2&gt;&lt;/center&gt;&lt;/b&gt;
+&lt;p&gt;&lt;b&gt;Investment advice for others&lt;/b&gt;&lt;/p&gt;
+&lt;textarea name="result_textarea" rows="7" cols="20"&gt;&lt;/textarea&gt;
+&lt;p&gt;&lt;b&gt;How do you buy your stocks&lt;/b&gt;
+&lt;select name="resultradio-5"&gt;
+&lt;option&gt;&lt;/option&gt;
+&lt;option&gt;1) On-line exam&lt;/option&gt;
+&lt;option&gt;2) Touch stone trading&lt;/option&gt;
+&lt;option&gt;3) Broken pieces&lt;/option&gt;
+&lt;option&gt;4) Other&lt;/option&gt;
+&lt;/select&gt;&lt;/p&gt;
+&lt;p&gt;&lt;select name="course" multiple&gt;
+&lt;optgroup label="Web"&gt;
+&lt;option&gt;1) Introduction to HTML&lt;/option&gt;
+&lt;option&gt;2) JavaScript&lt;/option&gt;
+&lt;option selected&gt;3) Web designing&lt;/option&gt;
+&lt;option selected&gt;4) Other&lt;/option&gt;
+&lt;/optgroup&gt;
+&lt;optgroup label="Programming"&gt;
+&lt;option&gt;1) C language&lt;/option&gt;
+&lt;option&gt;2) C++ language&lt;/option&gt;
+&lt;option&gt;3) Java language&lt;/option&gt;
+&lt;option&gt;4) Other&lt;/option&gt;
+&lt;/optgroup&gt;
+&lt;/select&gt;&lt;br&gt;&lt;br&gt;
+&lt;button type="submit"&gt;Send &lt;img src="merlin.gif" alt="submit"&gt;&lt;/button&gt;
+&lt;button type="reset"&gt;Reset &lt;img src="merlin.gif" alt="reset"&gt;&lt;/button&gt;
+&lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Label Element</h2>
+        <p>Label is used to attach text information to control elements.</p>
+        <pre>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Application Form&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;&lt;center&gt;&lt;font size="4" color="ForestGreen"&gt;Application Form&lt;/font&gt;&lt;/center&gt;&lt;/h1&gt;&lt;hr&gt;&lt;br&gt;
+&lt;form action="" method="post"&gt;
+&lt;p&gt;
+&lt;label for="firstname"&gt;Name:&lt;/label&gt;
+&lt;input type="text" id="firstname"&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;Area of Interest&lt;br&gt;&lt;br&gt;
+&lt;input type="radio" name="control1" value="0" checked&gt; Web designer
+&lt;input type="radio" name="control1" value="1"&gt; Web Administrator
+&lt;input type="radio" name="control1" value="2"&gt; Web Developer
+&lt;/p&gt;
+&lt;p&gt;Experience
+&lt;select name="control2"&gt;
+&lt;option&gt;None&lt;/option&gt;
+&lt;option&gt;1 year&lt;/option&gt;
+&lt;option&gt;2 years&lt;/option&gt;
+&lt;option&gt;4 years&lt;/option&gt;
+&lt;/select&gt;&lt;br&gt;
+&lt;/p&gt;
+&lt;p&gt;Comments&lt;br&gt;
+&lt;textarea name="control3" cols="30" rows="5"&gt;Type your comments here&lt;/textarea&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;input type="checkbox" name="control4" checked&gt; Send acknowledgement&lt;/p&gt;
+&lt;input type="submit" value="ok"&gt;
+&lt;input type="reset" value="rechange"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </section>
+
+    <section>
+        <h2>Flex Layout Notes</h2>
+        <p>Flexbox, Grid and Block layout demo files are created separately in:</p>
+        <p><code>8-march-assignment/flex-layout/index.html</code> and
+            <code>8-march-assignment/flex-layout/styles.css</code>.</p>
+    </section>
+</body>
+
+</html>

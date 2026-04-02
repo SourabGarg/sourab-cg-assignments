@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../Product.Frontend/Product.Frontend.csproj" Id="5290e202-cd64-4354-a211-0399722a5990" />
+  <Project Path="Product.csproj" />
+</Solution>

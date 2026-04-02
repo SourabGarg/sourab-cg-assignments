@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.dll
+*.exe
+
+wwwroot/lib/
+node_modules/
+
+.env
+appsettings.Development.json

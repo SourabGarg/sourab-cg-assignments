@@ -1,0 +1,179 @@
+﻿@model List<MVC_Demo_Project.Models.Department>
+@{
+    ViewData["Title"] = "Home";
+
+    var deptIcons = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        { "IT",         "fas fa-laptop-code" },
+        { "HR",         "fas fa-user-tie"    },
+        { "Finance",    "fas fa-chart-line"  },
+        { "Operations", "fas fa-cogs"        }
+    };
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    .home-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .home-hero {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 50px 40px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .home-hero h1 {
+        font-size: 36px;
+        margin: 0 0 10px 0;
+    }
+
+    .home-hero p {
+        font-size: 16px;
+        opacity: 0.85;
+        margin: 0;
+    }
+
+    .section-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #2a5298;
+    }
+
+    .dept-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .dept-card {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .dept-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .dept-card-header {
+        background: linear-gradient(135deg, #27ae60 0%, #1e8449 100%);
+        color: white;
+        padding: 24px 20px;
+        text-align: center;
+    }
+
+    .dept-card-header i {
+        font-size: 42px;
+        opacity: 0.9;
+        margin-bottom: 10px;
+    }
+
+    .dept-card-header h3 {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    .dept-card-body {
+        padding: 16px 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .dept-description {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.5;
+        flex: 1;
+    }
+
+    .dept-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    .dept-meta .badge {
+        background-color: #e8f5e9;
+        color: #27ae60;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .dept-meta .dept-id {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .dept-card-footer {
+        background-color: #f8f9fa;
+        padding: 12px 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #4a90d9;
+        font-weight: 600;
+        border-top: 1px solid #eee;
+    }
+
+    .dept-card-footer i {
+        margin-right: 5px;
+    }
+</style>
+
+<div class="home-container">
+    <div class="home-hero">
+        <h1><i class="fas fa-building"></i> Company Portal</h1>
+        <p>Select a department to view its employees and their details</p>
+    </div>
+
+    <h2 class="section-title"><i class="fas fa-sitemap"></i> Departments</h2>
+
+    <div class="dept-grid">
+        @foreach (var dept in Model)
+        {
+            var icon = deptIcons.TryGetValue(dept.DepartmentName, out var ic) ? ic : "fas fa-building";
+            <a href="@Url.Action("DepartmentEmployees", "Home", new { id = dept.DepartmentId })" class="dept-card">
+                <div class="dept-card-header">
+                    <i class="@icon"></i>
+                    <h3>@dept.DepartmentName</h3>
+                </div>
+                <div class="dept-card-body">
+                    <p class="dept-description">@dept.Description</p>
+                    <div class="dept-meta">
+                        <span class="badge">
+                            <i class="fas fa-users"></i> @dept.Employees.Count
+                            @(dept.Employees.Count == 1 ? "Employee" : "Employees")
+                        </span>
+                        <span class="dept-id">ID: @dept.DepartmentId</span>
+                    </div>
+                </div>
+                <div class="dept-card-footer">
+                    <i class="fas fa-arrow-right"></i> View Employees
+                </div>
+            </a>
+        }
+    </div>
+</div>

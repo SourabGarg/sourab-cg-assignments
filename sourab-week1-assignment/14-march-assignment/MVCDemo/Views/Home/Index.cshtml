@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 80px 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin: 40px 0;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-section h1 {
+        color: white;
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .hero-section p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .hero-button {
+        display: inline-block;
+        padding: 18px 50px;
+        background-color: #ff6b6b;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+    }
+
+    .hero-button:hover {
+        background-color: #ff5252;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        text-decoration: none;
+        color: white;
+    }
+
+    .search-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        margin: 30px 0 40px 0;
+        flex-wrap: wrap;
+    }
+
+    .search-form label {
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .search-form input {
+        padding: 12px 16px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        width: 200px;
+        min-width: 150px;
+    }
+
+    .search-form button {
+        padding: 12px 24px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .search-form button:hover {
+        background-color: #218838;
+    }
+
+    .search-form a {
+        padding: 12px 24px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 14px;
+        transition: background-color 0.3s;
+    }
+
+    .search-form a:hover {
+        background-color: #5a6268;
+    }
+
+    .welcome-section {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .welcome-section h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .welcome-section p {
+        color: #666;
+        font-size: 16px;
+    }
+</style>
+
+<div class="welcome-section">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div class="hero-section">
+    <h1>Explore Our Dogs</h1>
+    <p>Search for a dog by ID or view all our amazing dogs</p>
+    <form method="get" asp-controller="Dog" asp-action="Details" class="search-form">
+        <label for="id">Search Dog by ID:</label>
+        <input type="number" id="id" name="id" placeholder="Enter Dog ID" />
+        <button type="submit">Search</button>
+        <a href="@Url.Action("Index", "Dog")">View All Dogs</a>
+    </form>
+    <a class="hero-button" asp-area="" asp-controller="Home" asp-action="ViewDepartments">
+        Show Departments
+    </a>
+</div>

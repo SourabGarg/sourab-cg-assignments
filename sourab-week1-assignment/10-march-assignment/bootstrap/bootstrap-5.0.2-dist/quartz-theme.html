@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quartz Theme - Bootswatch</title>
+    <!-- Quartz Theme from Bootswatch -->
+    <link href="https://bootswatch.com/5/quartz/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section-title {
+            background: rgba(255, 255, 255, 0.95);
+            color: #1a1a2e;
+            padding: 20px;
+            margin: 40px 0 20px 0;
+            font-size: 1.5em;
+            font-weight: 600;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .glass-card h5 {
+            color: #a0e7e5;
+            margin-bottom: 15px;
+        }
+        .example-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 4px solid #a0e7e5;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #a0e7e5;
+        }
+        .feature-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(160, 231, 229, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        .feature-box h6 {
+            color: #a0e7e5;
+        }
+        .btn-demo {
+            margin: 5px;
+        }
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .color-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+        .color-sample {
+            height: 50px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-link {
+            color: rgba(255, 255, 255, 0.9) !important;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #a0e7e5 !important;
+        }
+        .glass-input {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+        }
+        .glass-input::placeholder {
+            color: rgba(255, 255, 255, 0.5) !important;
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.15) !important;
+            border-color: #a0e7e5 !important;
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <h1>✨ Quartz Theme by Bootswatch</h1>
+            <p>A modern glassmorphic design with Bootstrap 5</p>
+        </div>
+    </div>
+
+    <div class="container py-4">
+
+        <!-- What is Quartz? -->
+        <div class="section-title">🎨 What is the Quartz Theme?</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Glassmorphism Design</h5>
+                <p>Quartz is a modern, elegant Bootstrap theme featuring:</p>
+                <ul style="color: rgba(255, 255, 255, 0.9);">
+                    <li><strong>Glassmorphic Effect:</strong> Frosted glass appearance with backdrop blur</li>
+                    <li><strong>Dark Background:</strong> Sleek dark color scheme</li>
+                    <li><strong>Soft Transparency:</strong> Semi-transparent components</li>
+                    <li><strong>Modern Aesthetics:</strong> Clean, professional look</li>
+                    <li><strong>Smooth Animations:</strong> Fluid transitions and effects</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Buttons Example -->
+        <div class="section-title">🔘 Button Showcase</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Button Styles Available</h5>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-primary btn-demo">Primary</button>
+                    <button class="btn btn-secondary btn-demo">Secondary</button>
+                    <button class="btn btn-success btn-demo">Success</button>
+                    <button class="btn btn-danger btn-demo">Danger</button>
+                    <button class="btn btn-warning btn-demo">Warning</button>
+                    <button class="btn btn-info btn-demo">Info</button>
+                    <button class="btn btn-light btn-demo">Light</button>
+                    <button class="btn btn-dark btn-demo">Dark</button>
+                </div>
+                <hr style="border-color: rgba(255, 255, 255, 0.2);">
+                <p style="margin-top: 15px; opacity: 0.8;">Outline buttons:</p>
+                <div>
+                    <button class="btn btn-outline-primary btn-demo">Outline Primary</button>
+                    <button class="btn btn-outline-secondary btn-demo">Outline Secondary</button>
+                    <button class="btn btn-outline-success btn-demo">Outline Success</button>
+                    <button class="btn btn-outline-danger btn-demo">Outline Danger</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Colors & Palette -->
+        <div class="section-title">🎭 Color Palette</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Quartz Theme Colors</h5>
+                <div class="color-palette">
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #0d6efd;"></div>
+                        <strong>Primary</strong>
+                        <small>#0d6efd</small>
+                    </div>
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #6c757d;"></div>
+                        <strong>Secondary</strong>
+                        <small>#6c757d</small>
+                    </div>
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #198754;"></div>
+                        <strong>Success</strong>
+                        <small>#198754</small>
+                    </div>
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #dc3545;"></div>
+                        <strong>Danger</strong>
+                        <small>#dc3545</small>
+                    </div>
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #ffc107;"></div>
+                        <strong>Warning</strong>
+                        <small>#ffc107</small>
+                    </div>
+                    <div class="color-box">
+                        <div class="color-sample" style="background: #0dcaf0;"></div>
+                        <strong>Info</strong>
+                        <small>#0dcaf0</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Example -->
+        <div class="section-title">📝 Form Components</div>
+        <div class="example-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h5>Login Form</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control glass-input" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control glass-input" placeholder="Enter password">
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Sign In</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h5>Feedback & Tips</h5>
+                        <div class="alert alert-primary" role="alert">
+                            <strong>💡 Tip:</strong> The glass effect works great with dark backgrounds
+                        </div>
+                        <div class="alert alert-success" role="alert">
+                            <strong>✓ Perfect for:</strong> Modern web apps, dashboards, portfolios
+                        </div>
+                        <div class="alert alert-info" role="alert">
+                            <strong>ℹ️ Note:</strong> Quartz theme is best viewed on modern browsers
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards Example -->
+        <div class="section-title">🎴 Card Components</div>
+        <div class="example-section">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="glass-card" style="color: white;">
+                        <h5>💎 Feature 1</h5>
+                        <p>Beautiful glassmorphic design that impresses users</p>
+                        <a href="#" class="btn btn-sm btn-outline-light">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card" style="color: white;">
+                        <h5>⚡ Feature 2</h5>
+                        <p>Fast and responsive with smooth animations</p>
+                        <a href="#" class="btn btn-sm btn-outline-light">Learn More</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card" style="color: white;">
+                        <h5>🎨 Feature 3</h5>
+                        <p>Modern aesthetic perfect for contemporary apps</p>
+                        <a href="#" class="btn btn-sm btn-outline-light">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-life Examples -->
+        <div class="section-title">🌍 Real-life Use Cases</div>
+        <div class="example-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="feature-box">
+                        <h6>💼 SaaS Dashboards</h6>
+                        <p>Perfect for admin panels and analytics dashboards with modern, dark UI</p>
+                    </div>
+                    <div class="feature-box">
+                        <h6>🎮 Gaming Websites</h6>
+                        <p>Great for gaming portals and esports platforms with immersive visuals</p>
+                    </div>
+                    <div class="feature-box">
+                        <h6>🎬 Creative Portfolios</h6>
+                        <p>Ideal for showcasing creative work with elegant glassmorphic design</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-box">
+                        <h6>🏢 Fintech Applications</h6>
+                        <p>Suitable for financial platforms needing modern, professional appearance</p>
+                    </div>
+                    <div class="feature-box">
+                        <h6>🎵 Music & Media Apps</h6>
+                        <p>Works beautifully for music streaming and media consumption platforms</p>
+                    </div>
+                    <div class="feature-box">
+                        <h6>🌙 Dark Mode Apps</h6>
+                        <p>Excellent choice for any app emphasizing dark mode as primary interface</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Example -->
+        <div class="section-title">📊 Navigation & Layout</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Navbar Example</h5>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">🎯 Quartz</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Features</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- How to Use -->
+        <div class="section-title">🚀 How to Use Quartz Theme</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Step 1: Add the CSS Link</h5>
+                <div class="code-block">
+&lt;link href="https://bootswatch.com/5/quartz/bootstrap.min.css" rel="stylesheet"&gt;
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h5>Step 2: Use Bootstrap Classes</h5>
+                <div class="code-block">
+&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-6"&gt;
+            &lt;button class="btn btn-primary"&gt;Click Me&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <h5>Step 3: Add Custom Glass Effects (Optional)</h5>
+                <div class="code-block">
+&lt;style&gt;
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+}
+&lt;/style&gt;
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <div class="section-title">⚖️ Why Choose Quartz?</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Quartz vs Other Themes</h5>
+                <div class="table-responsive">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Quartz</th>
+                                <th>Default Bootstrap</th>
+                                <th>Other Themes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Dark Mode</strong></td>
+                                <td>✅ Built-in</td>
+                                <td>❌ No</td>
+                                <td>✅ Some have it</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Glassmorphism</strong></td>
+                                <td>✅ Yes</td>
+                                <td>❌ No</td>
+                                <td>❌ Rarely</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Modern Look</strong></td>
+                                <td>✅ Very Modern</td>
+                                <td>⚠️ Standard</td>
+                                <td>⚠️ Varies</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Easy to Use</strong></td>
+                                <td>✅ Very Easy</td>
+                                <td>✅ Very Easy</td>
+                                <td>⚠️ Some complexity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Browser Support</strong></td>
+                                <td>✅ Modern browsers</td>
+                                <td>✅ All browsers</td>
+                                <td>⚠️ Varies</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="section-title">✨ Best Practices</div>
+        <div class="example-section">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h5>✅ Do:</h5>
+                        <ul style="margin-bottom: 0; color: rgba(255, 255, 255, 0.9);">
+                            <li>Use dark backgrounds with Quartz</li>
+                            <li>Leverage the glassmorphic effect</li>
+                            <li>Add backdrop-filter for glass cards</li>
+                            <li>Use soft, muted colors</li>
+                            <li>Test on modern browsers</li>
+                            <li>Use meaningful transparency levels</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card">
+                        <h5>❌ Don't:</h5>
+                        <ul style="margin-bottom: 0; color: rgba(255, 255, 255, 0.9);">
+                            <li>Use light backgrounds</li>
+                            <li>Overuse transparency</li>
+                            <li>Mix with too bright colors</li>
+                            <li>Forget proper contrast ratios</li>
+                            <li>Ignore accessibility needs</li>
+                            <li>Use on very old browsers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources -->
+        <div class="section-title">📚 Resources & Links</div>
+        <div class="example-section">
+            <div class="glass-card">
+                <h5>Useful Links</h5>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div>
+                        <strong>📖 Documentation</strong>
+                        <p style="font-size: 0.9em;">Visit Bootswatch official docs for more themes</p>
+                    </div>
+                    <div>
+                        <strong>🎨 Bootstrap Documentation</strong>
+                        <p style="font-size: 0.9em;">Learn all Bootstrap 5 components and utilities</p>
+                    </div>
+                    <div>
+                        <strong>💡 Glassmorphism Guide</strong>
+                        <p style="font-size: 0.9em;">Master the glassmorphic design technique</p>
+                    </div>
+                    <div>
+                        <strong>🚀 Examples</strong>
+                        <p style="font-size: 0.9em;">See Quartz theme in real-world projects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>🎨 Quartz Theme - Modern Glassmorphic Bootstrap Theme by Bootswatch</p>
+        <p style="margin: 0; font-size: 0.9em; opacity: 0.7;">Created with Bootstrap 5 • Based on Bootswatch</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

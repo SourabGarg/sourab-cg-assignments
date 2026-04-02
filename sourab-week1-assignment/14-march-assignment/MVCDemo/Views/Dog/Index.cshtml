@@ -1,0 +1,246 @@
+﻿@model List<MVCDemo.Models.Dog>
+
+@{
+    ViewData["Title"] = "Dogs";
+}
+
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 15px;
+    }
+
+    .create-btn {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .create-btn:hover {
+        background-color: #218838;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    td {
+        padding: 12px;
+        color: #333;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .action-links {
+        display: flex;
+        gap: 10px;
+    }
+
+    .action-links a {
+        padding: 6px 12px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .edit-link {
+        background-color: #ffc107;
+        color: white;
+    }
+
+    .edit-link:hover {
+        background-color: #e0a800;
+    }
+
+    .details-link {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .details-link:hover {
+        background-color: #138496;
+    }
+
+    .delete-link {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .delete-link:hover {
+        background-color: #c82333;
+    }
+
+    .no-dogs {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+        font-size: 18px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+    }
+
+    .dog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .dog-card {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .dog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .dog-image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+        background-color: #e0e0e0;
+    }
+
+    .dog-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .no-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 48px;
+    }
+
+    .dog-info {
+        padding: 20px;
+    }
+
+    .dog-name {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .dog-detail {
+        color: #666;
+        margin: 8px 0;
+        font-size: 14px;
+    }
+
+    .dog-detail strong {
+        color: #333;
+    }
+
+    .dog-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .dog-actions a {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        transition: background-color 0.3s;
+    }
+</style>
+
+<div class="container">
+    <h1>Dogs</h1>
+
+    <a class="create-btn" asp-action="Create">+ Create New Dog</a>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="dog-grid">
+            @foreach (var dog in Model)
+            {
+                <div class="dog-card">
+                    <div class="dog-image">
+                        @if (!string.IsNullOrEmpty(dog.ImagePath))
+                        {
+                            <img src="@dog.ImagePath" alt="@dog.Name" />
+                        }
+                        else
+                        {
+                            <div class="no-image">🐕</div>
+                        }
+                    </div>
+                    <div class="dog-info">
+                        <div class="dog-name">@dog.Name</div>
+                        <div class="dog-detail">
+                            <strong>ID:</strong> @dog.Id
+                        </div>
+                        <div class="dog-detail">
+                            <strong>Age:</strong> @dog.Age years
+                        </div>
+                        <div class="dog-actions">
+                            <a class="details-link" asp-action="Details" asp-route-id="@dog.Id">Details</a>
+                            <a class="edit-link" asp-action="Edit" asp-route-id="@dog.Id">Edit</a>
+                            <a class="delete-link" asp-action="Delete" asp-route-id="@dog.Id">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="no-dogs">
+            <p>No dogs added yet. <a asp-action="Create" style="color: #007bff; font-weight: bold;">Create one now!</a></p>
+        </div>
+    }
+</div>

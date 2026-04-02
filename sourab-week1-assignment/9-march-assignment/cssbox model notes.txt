@@ -1,0 +1,39 @@
+CSS BOX MODEL
+---------------
+    padding means-- the content how much far it is from the border means if it is having border in which content is there it okay if the content is not having 
+    border then parent elelemt start will become the border here rememeber for content only i will do padding 
+
+    margin -- child elelemt how much distance it maintaines with parent it is applicable to element not content inside the element 
+
+    border means we provide border to element in orer to differentiate 
+
+One of the powerful features of modern HTML and Cascading Style Sheets (CSS) for web development is that you can almost completely separate the markup of your page in HTML from the rendering details specified in your CSS. An HTML page using a small selection of tags and some CSS styling can look like… well, just about anything you like. And you can change how it looks by simply changing the CSS.
+
+A basic - but often misunderstood - feature of CSS styling is something called the box model. The box model simply defines the rectangular space around an element and is defined by three properties:
+
+    border
+    padding
+    margin
+
+check slide 13 in web slides for clear explanation and below are the definitions for it 
+
+The border represents the effective outer limit of the element itself. The border can be either visible or invisible, and has properties for line type, color, and width.
+
+Padding specifies the spacing between the border and any content within the HTML element. If there’s no visible border, then the extent of the padding is effectively the extent of the element. Any background CSS properties associated with the element are displayed within the area defined by the border and padding properties.
+
+The margin represents the distance between the outer edge of the border and any neighboring elements. This is often a source of confusion as it’s easy to think of the margin as a kind of “padding” between elements. Better to think of it like the margin of a page: it represents the outer edge of the object. The margin is effectively transparent and will not reflect any of the background properties specified for the element.
+
+so here u check another slide in webslides which is cssbox okay which gives clear explanation first width and height will come for the element which u define 
+and then u define border and this content has to be how much far from border is decided by padding stuff and the border should be away from the page is decided by margin tags which can be applied as u know to four corners and another thing is u will use maximum div tags to implement css box model okay .
+
+Forms 
+--------
+Advantages of form :
+____________________
+Collecting names,addresses,telephone numbers,e-mail address and other information to register users for  a service or an event 
+
+Gathering infromation for the purchase of an item,for example if i want to purchase book on internet we have fill all relevant information
+
+Collecting feedback from the website .
+
+providing a search tool for the website ,so sites which are having varied information typically provide users with search box to enable them to locate information faster.

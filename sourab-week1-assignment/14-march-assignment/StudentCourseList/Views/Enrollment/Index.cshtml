@@ -1,0 +1,32 @@
+@model List<MVC_Demo_Project.Models.StudentCoursesVM>
+@{
+    ViewData["Title"] = "Student Course Dashboard";
+}
+
+<h2>Students and Enrolled Courses</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Branch</th>
+            <th>Course Count</th>
+            <th>Course Titles</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.Branch</td>
+                <td>@student.CourseTitles.Count</td>
+                <td>@string.Join(", ", student.CourseTitles)</td>
+                <td>
+                    <a asp-controller="Enrollment" asp-action="Details" asp-route-studentId="@student.StudentId">View Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

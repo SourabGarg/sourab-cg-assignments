@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .output {
+            background: #2d3748;
+            color: #68d391;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            min-height: 50px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript Interactive Demo</h1>
+
+        <!-- Arrays Section -->
+        <div class="section">
+            <h2>📊 Arrays in JavaScript</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <button onclick="arrayBasics()">Array Basics</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="arrayMethods()">Array Methods</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="arrayIteration()">Array Iteration</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="arrayAdvanced()">Advanced Arrays</button>
+                </div>
+            </div>
+            <div id="arrayOutput" class="output">Click a button to see array examples...</div>
+        </div>
+
+        <!-- Map Function Section -->
+        <div class="section">
+            <h2>🗺️ Map Function Examples</h2>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <button onclick="mapBasic()">Basic Map</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="mapObjects()">Map with Objects</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="mapChaining()">Map Chaining</button>
+                </div>
+                <div class="demo-card">
+                    <button onclick="mapPractical()">Practical Examples</button>
+                </div>
+            </div>
+            <div id="mapOutput" class="output">Click a button to see map function examples...</div>
+        </div>
+
+        <!-- Interactive Section -->
+        <div class="section">
+            <h2>🎮 Interactive Examples</h2>
+            <div>
+                <input type="text" id="inputNumbers" placeholder="Enter numbers separated by commas (e.g., 1,2,3,4,5)">
+                <button onclick="processInput()">Process Array</button>
+                <button onclick="squareNumbers()">Square All</button>
+                <button onclick="filterEven()">Filter Even</button>
+                <button onclick="calculateSum()">Calculate Sum</button>
+            </div>
+            <div id="interactiveOutput" class="output">Enter some numbers above and try the operations...</div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // ARRAY EXAMPLES
+        // ============================================
+
+        function arrayBasics() {
+            const output = document.getElementById('arrayOutput');
+            let result = '--- ARRAY BASICS ---\n\n';
+
+            // Creating arrays
+            const arr1 = [1, 2, 3, 4, 5];
+            const arr2 = new Array('apple', 'banana', 'cherry');
+            const mixed = [1, 'hello', true, {name: 'John'}, [1, 2, 3]];
+
+            result += `Array 1: ${JSON.stringify(arr1)}\n`;
+            result += `Array 2: ${JSON.stringify(arr2)}\n`;
+            result += `Mixed Array: ${JSON.stringify(mixed)}\n\n`;
+
+            // Accessing elements
+            result += `First element: ${arr1[0]}\n`;
+            result += `Last element: ${arr1[arr1.length - 1]}\n`;
+            result += `Array length: ${arr1.length}\n`;
+
+            output.textContent = result;
+        }
+
+        function arrayMethods() {
+            const output = document.getElementById('arrayOutput');
+            let result = '--- ARRAY METHODS ---\n\n';
+
+            const fruits = ['apple', 'banana', 'cherry'];
+
+            // Push and Pop
+            fruits.push('date');
+            result += `After push('date'): ${JSON.stringify(fruits)}\n`;
+            const popped = fruits.pop();
+            result += `After pop(): ${JSON.stringify(fruits)} (removed: ${popped})\n\n`;
+
+            // Unshift and Shift
+            fruits.unshift('apricot');
+            result += `After unshift('apricot'): ${JSON.stringify(fruits)}\n`;
+            const shifted = fruits.shift();
+            result += `After shift(): ${JSON.stringify(fruits)} (removed: ${shifted})\n\n`;
+
+            // Slice and Splice
+            const numbers = [1, 2, 3, 4, 5];
+            result += `Original: ${JSON.stringify(numbers)}\n`;
+            result += `Slice(1, 3): ${JSON.stringify(numbers.slice(1, 3))}\n`;
+            
+            const numbers2 = [1, 2, 3, 4, 5];
+            numbers2.splice(2, 1, 99);
+            result += `After splice(2, 1, 99): ${JSON.stringify(numbers2)}\n`;
+
+            output.textContent = result;
+        }
+
+        function arrayIteration() {
+            const output = document.getElementById('arrayOutput');
+            let result = '--- ARRAY ITERATION ---\n\n';
+
+            const numbers = [1, 2, 3, 4, 5];
+
+            // forEach
+            result += 'forEach: ';
+            numbers.forEach(num => result += `${num} `);
+            result += '\n\n';
+
+            // map
+            const doubled = numbers.map(num => num * 2);
+            result += `map (doubled): ${JSON.stringify(doubled)}\n\n`;
+
+            // filter
+            const evens = numbers.filter(num => num % 2 === 0);
+            result += `filter (evens): ${JSON.stringify(evens)}\n\n`;
+
+            // reduce
+            const sum = numbers.reduce((acc, num) => acc + num, 0);
+            result += `reduce (sum): ${sum}\n\n`;
+
+            // find
+            const found = numbers.find(num => num > 3);
+            result += `find (> 3): ${found}\n\n`;
+
+            // some and every
+            result += `some (> 3): ${numbers.some(num => num > 3)}\n`;
+            result += `every (> 0): ${numbers.every(num => num > 0)}\n`;
+
+            output.textContent = result;
+        }
+
+        function arrayAdvanced() {
+            const output = document.getElementById('arrayOutput');
+            let result = '--- ADVANCED ARRAY OPERATIONS ---\n\n';
+
+            // Spread operator
+            const arr1 = [1, 2, 3];
+            const arr2 = [4, 5, 6];
+            const combined = [...arr1, ...arr2];
+            result += `Spread: ${JSON.stringify(combined)}\n\n`;
+
+            // Destructuring
+            const [first, second, ...rest] = [1, 2, 3, 4, 5];
+            result += `Destructuring: first=${first}, second=${second}, rest=${JSON.stringify(rest)}\n\n`;
+
+            // Array.from
+            const str = 'hello';
+            const chars = Array.from(str);
+            result += `Array.from('hello'): ${JSON.stringify(chars)}\n\n`;
+
+            // Array.of
+            const arr = Array.of(1, 2, 3);
+            result += `Array.of(1, 2, 3): ${JSON.stringify(arr)}\n\n`;
+
+            // flat and flatMap
+            const nested = [1, [2, 3], [4, [5, 6]]];
+            result += `Nested: ${JSON.stringify(nested)}\n`;
+            result += `flat(): ${JSON.stringify(nested.flat())}\n`;
+            result += `flat(2): ${JSON.stringify(nested.flat(2))}\n`;
+
+            output.textContent = result;
+        }
+
+        // ============================================
+        // MAP FUNCTION EXAMPLES
+        // ============================================
+
+        function mapBasic() {
+            const output = document.getElementById('mapOutput');
+            let result = '--- BASIC MAP EXAMPLES ---\n\n';
+
+            // Square numbers
+            const numbers = [1, 2, 3, 4, 5];
+            const squared = numbers.map(num => num * num);
+            result += `Original: ${JSON.stringify(numbers)}\n`;
+            result += `Squared: ${JSON.stringify(squared)}\n\n`;
+
+            // Temperature conversion
+            const celsius = [0, 10, 20, 30, 40];
+            const fahrenheit = celsius.map(c => (c * 9/5) + 32);
+            result += `Celsius: ${JSON.stringify(celsius)}\n`;
+            result += `Fahrenheit: ${JSON.stringify(fahrenheit)}\n\n`;
+
+            // String manipulation
+            const words = ['hello', 'world', 'javascript'];
+            const capitalized = words.map(word => word.toUpperCase());
+            result += `Original: ${JSON.stringify(words)}\n`;
+            result += `Capitalized: ${JSON.stringify(capitalized)}\n`;
+
+            output.textContent = result;
+        }
+
+        function mapObjects() {
+            const output = document.getElementById('mapOutput');
+            let result = '--- MAP WITH OBJECTS ---\n\n';
+
+            const users = [
+                { id: 1, name: 'Alice', age: 25 },
+                { id: 2, name: 'Bob', age: 30 },
+                { id: 3, name: 'Charlie', age: 35 }
+            ];
+
+            // Extract names
+            const names = users.map(user => user.name);
+            result += `Names: ${JSON.stringify(names)}\n\n`;
+
+            // Add email property
+            const withEmail = users.map(user => ({
+                ...user,
+                email: `${user.name.toLowerCase()}@example.com`
+            }));
+            result += `With Email:\n${JSON.stringify(withEmail, null, 2)}\n`;
+
+            output.textContent = result;
+        }
+
+        function mapChaining() {
+            const output = document.getElementById('mapOutput');
+            let result = '--- MAP CHAINING ---\n\n';
+
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+            // Chain multiple operations
+            const processed = numbers
+                .filter(num => num % 2 === 0)
+                .map(num => num * 2)
+                .map(num => num + 10);
+
+            result += `Original: ${JSON.stringify(numbers)}\n`;
+            result += `Filter even: ${JSON.stringify(numbers.filter(n => n % 2 === 0))}\n`;
+            result += `Then double: ${JSON.stringify(numbers.filter(n => n % 2 === 0).map(n => n * 2))}\n`;
+            result += `Then add 10: ${JSON.stringify(processed)}\n`;
+
+            output.textContent = result;
+        }
+
+        function mapPractical() {
+            const output = document.getElementById('mapOutput');
+            let result = '--- PRACTICAL MAP EXAMPLES ---\n\n';
+
+            // Shopping cart
+            const cart = [
+                { item: 'Apple', price: 2, quantity: 3 },
+                { item: 'Banana', price: 1, quantity: 5 },
+                { item: 'Orange', price: 3, quantity: 2 }
+            ];
+
+            const totals = cart.map(item => ({
+                item: item.item,
+                total: item.price * item.quantity
+            }));
+
+            result += 'Shopping Cart Totals:\n';
+            totals.forEach(t => {
+                result += `  ${t.item}: $${t.total}\n`;
+            });
+
+            // Grade classification
+            const grades = [45, 78, 92, 65, 88];
+            const classified = grades.map(grade => ({
+                grade,
+                status: grade >= 90 ? 'A' : grade >= 80 ? 'B' : grade >= 70 ? 'C' : grade >= 60 ? 'D' : 'F'
+            }));
+
+            result += '\nGrade Classification:\n';
+            classified.forEach(g => {
+                result += `  ${g.grade} → ${g.status}\n`;
+            });
+
+            output.textContent = result;
+        }
+
+        // ============================================
+        // INTERACTIVE EXAMPLES
+        // ============================================
+
+        function processInput() {
+            const input = document.getElementById('inputNumbers').value;
+            const output = document.getElementById('interactiveOutput');
+            
+            if (!input.trim()) {
+                output.textContent = 'Please enter some numbers!';
+                return;
+            }
+
+            const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            
+            let result = '--- ARRAY PROCESSING ---\n\n';
+            result += `Input: ${JSON.stringify(numbers)}\n`;
+            result += `Length: ${numbers.length}\n`;
+            result += `Min: ${Math.min(...numbers)}\n`;
+            result += `Max: ${Math.max(...numbers)}\n`;
+            result += `Average: ${(numbers.reduce((a, b) => a + b, 0) / numbers.length).toFixed(2)}\n`;
+            
+            output.textContent = result;
+        }
+
+        function squareNumbers() {
+            const input = document.getElementById('inputNumbers').value;
+            const output = document.getElementById('interactiveOutput');
+            
+            if (!input.trim()) {
+                output.textContent = 'Please enter some numbers!';
+                return;
+            }
+
+            const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            const squared = numbers.map(num => num * num);
+            
+            output.textContent = `Original: ${JSON.stringify(numbers)}\nSquared: ${JSON.stringify(squared)}`;
+        }
+
+        function filterEven() {
+            const input = document.getElementById('inputNumbers').value;
+            const output = document.getElementById('interactiveOutput');
+            
+            if (!input.trim()) {
+                output.textContent = 'Please enter some numbers!';
+                return;
+            }
+
+            const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            const evens = numbers.filter(num => num % 2 === 0);
+            
+            output.textContent = `Original: ${JSON.stringify(numbers)}\nEven numbers: ${JSON.stringify(evens)}`;
+        }
+
+        function calculateSum() {
+            const input = document.getElementById('inputNumbers').value;
+            const output = document.getElementById('interactiveOutput');
+            
+            if (!input.trim()) {
+                output.textContent = 'Please enter some numbers!';
+                return;
+            }
+
+            const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+            const sum = numbers.reduce((acc, num) => acc + num, 0);
+            
+            output.textContent = `Numbers: ${JSON.stringify(numbers)}\nSum: ${sum}`;
+        }
+    </script>
+</body>
+</html>

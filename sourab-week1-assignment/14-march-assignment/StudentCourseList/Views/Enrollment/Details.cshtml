@@ -1,0 +1,30 @@
+@model MVC_Demo_Project.Models.StudentDetailVM
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h2>@Model.Name (@Model.Branch)</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Credits</th>
+            <th>Department</th>
+            <th>Latest Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model.Courses)
+        {
+            <tr>
+                <td>@course.Title</td>
+                <td>@course.Credits</td>
+                <td>@course.Department</td>
+                <td>@course.LatestGrade</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Enrollment" asp-action="Index">Back to List</a>

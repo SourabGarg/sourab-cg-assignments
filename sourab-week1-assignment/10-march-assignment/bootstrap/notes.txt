@@ -1,0 +1,25 @@
+Bootstrap is a free front-end framework for faster and easier web development 
+Bootstrap includes HTML and CSS based design templates for typography, forms, buttons, tables, navigation, modals, image 
+carousels and many other, as well as optional JavaScript plugins
+Bootstrap also gives you the ability to easily create responsive designs
+
+go to getbootstrap.com right side corner go for 5.0.3 version of bootstrap select and  left menu third one download is there 
+and first downlod u click unzip the folder 
+and finally open the folder in vscode 
+
+add one file index.html in the downloaded fodler having css and js folder 
+and code is below 
+
+
+For designing first learn bootstrap from this link 
+
+https://www.w3schools.com/bootstrap5/
+
+and after learning go to this link 
+
+https://getbootstrap.com/docs/5.0/getting-started/introduction/
+
+and in this in search type what u want like forms ,dropdowns etc 
+
+some code will come try to analize it and replace that code with  your desing code which u need it 
+bootswatch.com is another site for taking code into desing 

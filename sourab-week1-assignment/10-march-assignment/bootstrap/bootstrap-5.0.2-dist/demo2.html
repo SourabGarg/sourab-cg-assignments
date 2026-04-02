@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid System - Beginner Guide</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .concept-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .concept-section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .example-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .example-box h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        .code-block {
+            background-color: #f4f4f4;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border-radius: 4px;
+        }
+        .demo-row {
+            margin-bottom: 20px;
+        }
+        .demo-col {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .col1 { background-color: #FF6B6B; }
+        .col2 { background-color: #4ECDC4; }
+        .col3 { background-color: #45B7D1; }
+        .col4 { background-color: #FFA07A; }
+        .col5 { background-color: #98D8C8; }
+        .col6 { background-color: #6C5CE7; }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .tip {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .container-section {
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>🎨 Bootstrap Grid System</h1>
+        <p>Learn to create responsive layouts with the 12-Column Grid System</p>
+    </div>
+
+    <div class="container" style="max-width: 1200px;">
+        <!-- Concept Section -->
+        <div class="concept-section">
+            <h2>📚 What is Bootstrap Grid System?</h2>
+            <p style="font-size: 1.1em; line-height: 1.8;">
+                Think of the Bootstrap Grid System like a <strong>ruler divided into 12 equal parts</strong>. 
+                Each row on your website has exactly 12 columns, and you can divide them however you want 
+                to arrange your content (images, text, buttons, etc.).
+            </p>
+            <div class="tip">
+                <strong>💡 Simple Analogy:</strong> Imagine a newspaper layout with 12 vertical lines. 
+                You can use 1 line for a narrow sidebar, 5 lines for main content, and 6 lines for advertisement. 
+                That's how Bootstrap Grid works!
+            </div>
+        </div>
+
+        <!-- Basic Concepts -->
+        <div class="concept-section">
+            <h2>🔑 Key Concepts</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h4 style="color: #667eea;">🏗️ Container</h4>
+                    <p>The wrapper that holds everything. Options:</p>
+                    <code style="background: #f4f4f4; padding: 5px 10px; border-radius: 3px;">
+                        .container (fixed width)<br>
+                        .container-fluid (full width)
+                    </code>
+                </div>
+                <div>
+                    <h4 style="color: #667eea;">📏 Row</h4>
+                    <p>Horizontal line that holds columns.</p>
+                    <code style="background: #f4f4f4; padding: 5px 10px; border-radius: 3px;">
+                        &lt;div class="row"&gt;...&lt;/div&gt;
+                    </code>
+                </div>
+                <div>
+                    <h4 style="color: #667eea;">📊 Column</h4>
+                    <p>Individual units (1-12) for content.</p>
+                    <code style="background: #f4f4f4; padding: 5px 10px; border-radius: 3px;">
+                        .col-1 to .col-12
+                    </code>
+                </div>
+                <div>
+                    <h4 style="color: #667eea;">📱 Responsive</h4>
+                    <p>Changes based on screen size.</p>
+                    <code style="background: #f4f4f4; padding: 5px 10px; border-radius: 3px;">
+                        col-sm-, col-md-, col-lg-
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 1: Basic Structure -->
+        <div class="example-box">
+            <h3>✅ Example 1: Basic HTML Structure</h3>
+            <p>Here's the minimum code you need to get started:</p>
+            <div class="code-block">
+&lt;!-- Container: Wrapper for everything --&gt;
+&lt;div class="container"&gt;
+
+    &lt;!-- Row: Horizontal container --&gt;
+    &lt;div class="row"&gt;
+        
+        &lt;!-- Column 1: Takes 6 out of 12 units (50% width) --&gt;
+        &lt;div class="col-6"&gt;
+            Content goes here
+        &lt;/div&gt;
+        
+        &lt;!-- Column 2: Takes 6 out of 12 units (50% width) --&gt;
+        &lt;div class="col-6"&gt;
+            More content here
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 2: Understanding Columns -->
+        <div class="example-box">
+            <h3>✅ Example 2: All 12 Columns Explained</h3>
+            <p>A row has exactly 12 columns. Here are all different ways to use them:</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-1 demo-col col1">col-1</div>
+                    <div class="col-1 demo-col col2">col-1</div>
+                    <div class="col-1 demo-col col3">col-1</div>
+                    <div class="col-1 demo-col col4">col-1</div>
+                    <div class="col-1 demo-col col5">col-1</div>
+                    <div class="col-1 demo-col col6">col-1</div>
+                    <div class="col-1 demo-col col1">col-1</div>
+                    <div class="col-1 demo-col col2">col-1</div>
+                    <div class="col-1 demo-col col3">col-1</div>
+                    <div class="col-1 demo-col col4">col-1</div>
+                    <div class="col-1 demo-col col5">col-1</div>
+                    <div class="col-1 demo-col col6">col-1</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+    &lt;div class="col-1"&gt;col-1&lt;/div&gt;
+    ... (repeat 12 times)
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 3: Common Layouts -->
+        <div class="example-box">
+            <h3>✅ Example 3: 4 Equal Columns (3+3+3+3)</h3>
+            <p>Each column takes 3 units = 25% of width</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-3 demo-col col1">Profile Card</div>
+                    <div class="col-3 demo-col col2">Profile Card</div>
+                    <div class="col-3 demo-col col3">Profile Card</div>
+                    <div class="col-3 demo-col col4">Profile Card</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-3"&gt;Profile Card&lt;/div&gt;
+    &lt;div class="col-3"&gt;Profile Card&lt;/div&gt;
+    &lt;div class="col-3"&gt;Profile Card&lt;/div&gt;
+    &lt;div class="col-3"&gt;Profile Card&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 4: Two Column Layout -->
+        <div class="example-box">
+            <h3>✅ Example 4: 2 Equal Columns (6+6)</h3>
+            <p>Each column takes 6 units = 50% of width</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-6 demo-col col1">Sidebar</div>
+                    <div class="col-6 demo-col col2">Main Content</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-6"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="col-6"&gt;Main Content&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 5: Mixed Columns -->
+        <div class="example-box">
+            <h3>✅ Example 5: Mixed Column Sizes (2+4+6)</h3>
+            <p>Different widths: 16.67% + 33.33% + 50%</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-2 demo-col col1">Narrow</div>
+                    <div class="col-4 demo-col col2">Medium</div>
+                    <div class="col-6 demo-col col3">Wide</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-2"&gt;Narrow (16.67%)&lt;/div&gt;
+    &lt;div class="col-4"&gt;Medium (33.33%)&lt;/div&gt;
+    &lt;div class="col-6"&gt;Wide (50%)&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 6: Full Width -->
+        <div class="example-box">
+            <h3>✅ Example 6: Full Width Column (12)</h3>
+            <p>Takes all 12 units = 100% of width</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 demo-col" style="background-color: #667eea;">Full Width Header</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-12"&gt;Full Width Header&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 7: Responsive Design -->
+        <div class="example-box">
+            <h3>✅ Example 7: Responsive Design (Mobile to Desktop)</h3>
+            <p>Try resizing your browser! Columns stack on mobile and spread on desktop:</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3 demo-col col1">Mobile: Full<br>Tablet: 1/2<br>Desktop: 1/4</div>
+                    <div class="col-12 col-md-6 col-lg-3 demo-col col2">Mobile: Full<br>Tablet: 1/2<br>Desktop: 1/4</div>
+                    <div class="col-12 col-md-6 col-lg-3 demo-col col3">Mobile: Full<br>Tablet: 1/2<br>Desktop: 1/4</div>
+                    <div class="col-12 col-md-6 col-lg-3 demo-col col4">Mobile: Full<br>Tablet: 1/2<br>Desktop: 1/4</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;!-- col-12: On mobile (full width) --&gt;
+    &lt;!-- col-md-6: On tablet (50% width) --&gt;
+    &lt;!-- col-lg-3: On desktop (25% width) --&gt;
+    &lt;div class="col-12 col-md-6 col-lg-3"&gt;Card&lt;/div&gt;
+    ...
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Example 8: Real Website Layout -->
+        <div class="example-box">
+            <h3>✅ Example 8: Real Website Layout</h3>
+            <p>How a complete website might look using Bootstrap Grid:</p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 demo-col" style="background-color: #333; color: white;">🔝 HEADER / NAVIGATION</div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-12 col-lg-8 demo-col col1">📝 MAIN CONTENT</div>
+                    <div class="col-12 col-lg-4 demo-col col2">🔗 SIDEBAR</div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-12 demo-col" style="background-color: #555; color: white;">🔗 FOOTER</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Header --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12"&gt;HEADER&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Main + Sidebar --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12 col-lg-8"&gt;MAIN CONTENT&lt;/div&gt;
+    &lt;div class="col-12 col-lg-4"&gt;SIDEBAR&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Footer --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12"&gt;FOOTER&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Bootstrap Reference Table -->
+        <div class="concept-section">
+            <h2>📋 Column Size Reference Table</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #667eea; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Class</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Units</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Width %</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-1</code></td><td style="padding: 10px; border: 1px solid #ddd;">1/12</td><td style="padding: 10px; border: 1px solid #ddd;">8.33%</td><td style="padding: 10px; border: 1px solid #ddd;">Tiny column</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-2</code></td><td style="padding: 10px; border: 1px solid #ddd;">2/12</td><td style="padding: 10px; border: 1px solid #ddd;">16.67%</td><td style="padding: 10px; border: 1px solid #ddd;">Narrow sidebar</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-3</code></td><td style="padding: 10px; border: 1px solid #ddd;">3/12</td><td style="padding: 10px; border: 1px solid #ddd;">25%</td><td style="padding: 10px; border: 1px solid #ddd;">1/4 width</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-4</code></td><td style="padding: 10px; border: 1px solid #ddd;">4/12</td><td style="padding: 10px; border: 1px solid #ddd;">33.33%</td><td style="padding: 10px; border: 1px solid #ddd;">1/3 width</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-6</code></td><td style="padding: 10px; border: 1px solid #ddd;">6/12</td><td style="padding: 10px; border: 1px solid #ddd;">50%</td><td style="padding: 10px; border: 1px solid #ddd;">Half width</td></tr>
+                    <tr><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12</code></td><td style="padding: 10px; border: 1px solid #ddd;">12/12</td><td style="padding: 10px; border: 1px solid #ddd;">100%</td><td style="padding: 10px; border: 1px solid #ddd;">Full width</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Responsive Breakpoints -->
+        <div class="concept-section">
+            <h2>📱 Responsive Breakpoints - All Device Types</h2>
+            <p>Bootstrap automatically adjusts your layout based on screen size:</p>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #667eea; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Device Type</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Screen Width</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Prefix</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: #fff9e6;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>📱 Mobile (Extra Small)</strong></td><td style="padding: 10px; border: 1px solid #ddd;">&lt; 576px</td><td style="padding: 10px; border: 1px solid #ddd;">None (.col-)</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-6</code></td></tr>
+                    <tr style="background-color: #e8f4f8;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>📱 Mobile Landscape / Small Tablet</strong></td><td style="padding: 10px; border: 1px solid #ddd;">≥ 576px</td><td style="padding: 10px; border: 1px solid #ddd;">sm</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-sm-6</code></td></tr>
+                    <tr style="background-color: #e8f4f8;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>📱 Tablet</strong></td><td style="padding: 10px; border: 1px solid #ddd;">≥ 768px</td><td style="padding: 10px; border: 1px solid #ddd;">md</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-md-6</code></td></tr>
+                    <tr style="background-color: #e6f7ff;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>💻 Laptop / Desktop</strong></td><td style="padding: 10px; border: 1px solid #ddd;">≥ 992px</td><td style="padding: 10px; border: 1px solid #ddd;">lg</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-lg-6</code></td></tr>
+                    <tr style="background-color: #e6f7ff;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>💻 Large Desktop</strong></td><td style="padding: 10px; border: 1px solid #ddd;">≥ 1200px</td><td style="padding: 10px; border: 1px solid #ddd;">xl</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-xl-6</code></td></tr>
+                    <tr style="background-color: #e6f7ff;"><td style="padding: 10px; border: 1px solid #ddd;"><strong>💻 Extra Large Desktop (4K)</strong></td><td style="padding: 10px; border: 1px solid #ddd;">≥ 1400px</td><td style="padding: 10px; border: 1px solid #ddd;">xxl</td><td style="padding: 10px; border: 1px solid #ddd;"><code>.col-xxl-6</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Complete Responsive Examples for All Devices -->
+        <div class="example-box">
+            <h3>✅ Example 9: Complete Responsive Design - All Devices</h3>
+            <p><strong>Resize your browser to see how the layout changes!</strong></p>
+            <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">
+                📱 On Mobile (&lt;576px): Stacks vertically (6 + 6)<br>
+                📱 On Tablet (576-768px): 2 columns (6 + 6)<br>
+                📊 On Tablet Large (768-992px): 3 columns (4 + 4 + 4)<br>
+                💻 On Laptop (992-1200px): 4 columns (3 + 3 + 3 + 3)<br>
+                💻 On Large Desktop (1200px+): 4 columns (3 + 3 + 3 + 3)<br>
+                💻 On Extra Large Desktop (1400px+): 4 columns (3 + 3 + 3 + 3)
+            </p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 demo-col col1">Card 1</div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 demo-col col2">Card 2</div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 demo-col col3">Card 3</div>
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3 demo-col col4">Card 4</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;div class="row"&gt;
+    &lt;div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"&gt;Card 1&lt;/div&gt;
+    &lt;div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"&gt;Card 2&lt;/div&gt;
+    &lt;div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"&gt;Card 3&lt;/div&gt;
+    &lt;div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3"&gt;Card 4&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Mobile Specific Layout -->
+        <div class="example-box">
+            <h3>✅ Example 10: Mobile-First Design (Mobile to Desktop Growth)</h3>
+            <p><strong>Mobile-first approach:</strong> Start simple on mobile, add complexity on larger screens</p>
+            <p style="background: #d1ecf1; padding: 10px; border-radius: 5px;">
+                📱 Mobile: Single full-width column<br>
+                📱 Tablet: 2 columns side by side<br>
+                💻 Desktop: 3 columns<br>
+                💻 Large Desktop: 4 columns
+            </p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 demo-col" style="background-color: #FF6B6B;">Mobile: Full<br>Tablet: 6 cols<br>Desktop: 4 cols<br>Large: 3 cols</div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 demo-col" style="background-color: #4ECDC4;">Mobile: Full<br>Tablet: 6 cols<br>Desktop: 4 cols<br>Large: 3 cols</div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 demo-col" style="background-color: #45B7D1;">Mobile: Full<br>Tablet: 6 cols<br>Desktop: 4 cols<br>Large: 3 cols</div>
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3 demo-col" style="background-color: #FFA07A;">Mobile: Full<br>Tablet: 6 cols<br>Desktop: 4 cols<br>Large: 3 cols</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Full width on mobile, 2 cols on tablet, 3 cols on desktop, 4 cols on large desktop --&gt;
+&lt;div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-3"&gt;...&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Website Layout Responsive -->
+        <div class="example-box">
+            <h3>✅ Example 11: Responsive Website Layout (Header + Sidebar + Footer)</h3>
+            <p><strong>Complete responsive website example - sidebar moves on mobile!</strong></p>
+            <p style="background: #fff3cd; padding: 10px; border-radius: 5px;">
+                📱 Mobile: Header (full) → Content (full) → Sidebar (full, below content)<br>
+                📊 Tablet: Header (full) → Content (8 cols) + Sidebar (4 cols)<br>
+                💻 Desktop: Header (full) → Content (8 cols) + Sidebar (4 cols) → Footer (full)
+            </p>
+            
+            <div class="demo-row">
+                <div class="row">
+                    <div class="col-12 demo-col" style="background-color: #333; color: white; margin-bottom: 10px;">🔝 HEADER (col-12) - Always Full Width</div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-12 col-lg-8 demo-col col1" style="margin-bottom: 10px;">📝 MAIN CONTENT (col-12 on mobile, col-lg-8 on desktop)</div>
+                    <div class="col-12 col-lg-4 demo-col col2">🔗 SIDEBAR (col-12 on mobile, col-lg-4 on desktop)</div>
+                </div>
+                <div class="row">
+                    <div class="col-12 demo-col" style="background-color: #555; color: white;">🔗 FOOTER (col-12) - Always Full Width</div>
+                </div>
+            </div>
+            <div class="code-block">
+&lt;!-- Header --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12"&gt;HEADER&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Main Content + Sidebar (stacks on mobile, side-by-side on desktop) --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12 col-lg-8"&gt;MAIN CONTENT&lt;/div&gt;
+    &lt;div class="col-12 col-lg-4"&gt;SIDEBAR&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Footer --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12"&gt;FOOTER&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- All Screen Sizes Demo -->
+        <div class="example-box">
+            <h3>✅ Example 12: Products Grid Responsive Across All Devices</h3>
+            <p><strong>E-commerce style product grid that adapts to all screen sizes</strong></p>
+            <p style="background: #d1ecf1; padding: 10px; border-radius: 5px;">
+                📱 Mobile: 1 product per row<br>
+                📱 Small Tablet: 2 products per row<br>
+                📊 Tablet: 3 products per row<br>
+                💻 Laptop: 4 products per row<br>
+                💻 Large Desktop: 5 products per row<br>
+                💻 Extra Large (4K): 6 products per row
+            </p>
+            
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col1" style="font-size: 0.9em;">📱 Mobile: 1/row<br>📱 Tablet SM: 2/row</div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col2" style="font-size: 0.9em;">📊 Tablet MD: 3/row<br>💻 Desktop: 4/row</div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col3" style="font-size: 0.9em;">💻 Large: 4/row<br>💻 XL: 5/row</div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col4" style="font-size: 0.9em;">💻 XXL: 6/row<br>(4K Screens)</div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col5" style="background-color: #98D8C8;">Product 5</div>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2 demo-col col6" style="background-color: #6C5CE7;">Product 6</div>
+            </div>
+            <div class="code-block">
+&lt;!-- Grid that adapts from 1 col on mobile to 6 cols on 4K screens --&gt;
+&lt;div class="row"&gt;
+    &lt;div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2_4 col-xxl-2"&gt;Product Card&lt;/div&gt;
+    &lt;!-- Repeat for all products --&gt;
+&lt;/div&gt;
+            </div>
+        </div>
+
+        <!-- Common Patterns for All Devices -->
+        <div class="concept-section">
+            <h2>🎯 Common Responsive Patterns for All Devices</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #667eea; color: white;">
+                        <th style="padding: 10px; border: 1px solid #ddd;">Layout Type</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Mobile (xs)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Tablet (sm/md)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Laptop (lg)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Desktop (xl/xxl)</th>
+                        <th style="padding: 10px; border: 1px solid #ddd;">Code Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Product Card Grid</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">1 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">2 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">3 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">4 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12 .col-sm-6 .col-md-4 .col-lg-3</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Blog Layout</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Full width</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Full width</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Content + Sidebar</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Content + Sidebar</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12 .col-lg-8</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Feature Section</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Stacked</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">2 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">3 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">4 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12 .col-md-6 .col-lg-4</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Team Members</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">1 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">2 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">3 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">4 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12 .col-sm-6 .col-md-4 .col-lg-3</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Testimonials</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">Full width</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">2 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">3 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">3 per row</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>.col-12 .col-md-6 .col-lg-4</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="concept-section">
+            <h2>⭐ Best Practices & Tips</h2>
+            <div class="note">
+                <strong>✓ Always sum to 12:</strong> Make sure columns in a row add up to 12. Example: 4+4+4=12, 6+6=12, 3+3+3+3=12
+            </div>
+            <div class="note">
+                <strong>✓ Use containers:</strong> Always wrap rows in .container or .container-fluid
+            </div>
+            <div class="note">
+                <strong>✓ Responsive classes:</strong> Use col-sm-, col-md-, col-lg- for different devices
+            </div>
+            <div class="note">
+                <strong>✓ Add gutters:</strong> Bootstrap adds automatic spacing between columns (gutters)
+            </div>
+            <div class="note">
+                <strong>✓ Mobile first:</strong> Start with mobile layout, then add larger screen classes
+            </div>
+            <div class="note">
+                <strong>✓ No limit on rows:</strong> You can have as many rows as you want - Bootstrap doesn't restrict this
+            </div>
+        </div>
+
+        <!-- Quick Start Code -->
+        <div class="example-box">
+            <h3>🚀 Quick Start - Complete Example</h3>
+            <p>Copy this code and start using Bootstrap Grid right away:</p>
+            <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;My Website&lt;/h1&gt;
+        
+        &lt;!-- Row 1: Header --&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-12" style="background: lightblue; padding: 10px;"&gt;
+                Header
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Row 2: Main content + Sidebar --&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-8" style="background: lightgreen; padding: 10px;"&gt;
+                Main Content (8 columns)
+            &lt;/div&gt;
+            &lt;div class="col-4" style="background: lightyellow; padding: 10px;"&gt;
+                Sidebar (4 columns)
+            &lt;/div&gt;
+        &lt;/div&gt;
+        
+        &lt;!-- Row 3: 4 Cards --&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-3" style="background: lightcoral; padding: 10px;"&gt;Card 1&lt;/div&gt;
+            &lt;div class="col-3" style="background: lightcoral; padding: 10px;"&gt;Card 2&lt;/div&gt;
+            &lt;div class="col-3" style="background: lightcoral; padding: 10px;"&gt;Card 3&lt;/div&gt;
+            &lt;div class="col-3" style="background: lightcoral; padding: 10px;"&gt;Card 4&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>✅ Now you understand Bootstrap Grid System! Try building your own responsive layouts! 🎉</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">Bootstrap 5.0.2 | Responsive Grid Guide</p>
+    </footer>
+        
+        <!-- Row 1: 12 columns of 1 unit each -->
+        <h2>Row 1: 12 Columns (1 unit each)</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-1" style="background-color: #FF6B6B; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 1</span>
+            </div>
+            <div class="col-1" style="background-color: #4ECDC4; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 2</span>
+            </div>
+            <div class="col-1" style="background-color: #45B7D1; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 3</span>
+            </div>
+            <div class="col-1" style="background-color: #FFA07A; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 4</span>
+            </div>
+            <div class="col-1" style="background-color: #98D8C8; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 5</span>
+            </div>
+            <div class="col-1" style="background-color: #6C5CE7; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 6</span>
+            </div>
+            <div class="col-1" style="background-color: #F39C12; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 7</span>
+            </div>
+            <div class="col-1" style="background-color: #E74C3C; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 8</span>
+            </div>
+            <div class="col-1" style="background-color: #3498DB; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 9</span>
+            </div>
+            <div class="col-1" style="background-color: #2ECC71; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 10</span>
+            </div>
+            <div class="col-1" style="background-color: #9B59B6; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 11</span>
+            </div>
+            <div class="col-1" style="background-color: #34495E; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 12</span>
+            </div>
+        </div>
+
+        <!-- Row 2: Different column sizes -->
+        <h2>Row 2: Mixed Column Sizes (3+3+3+3)</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-3" style="background-color: #FF6B6B; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 3 (1/4)</span>
+            </div>
+            <div class="col-3" style="background-color: #4ECDC4; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 3 (1/4)</span>
+            </div>
+            <div class="col-3" style="background-color: #45B7D1; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 3 (1/4)</span>
+            </div>
+            <div class="col-3" style="background-color: #FFA07A; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 3 (1/4)</span>
+            </div>
+        </div>
+
+        <!-- Row 3: Different column sizes -->
+        <h2>Row 3: Mixed Column Sizes (6+6)</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-6" style="background-color: #FF6B6B; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 6 (1/2)</span>
+            </div>
+            <div class="col-6" style="background-color: #4ECDC4; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 6 (1/2)</span>
+            </div>
+        </div>
+
+        <!-- Row 4: Another example -->
+        <h2>Row 4: Mixed Column Sizes (2+4+6)</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-2" style="background-color: #FF6B6B; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 2</span>
+            </div>
+            <div class="col-4" style="background-color: #4ECDC4; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 4</span>
+            </div>
+            <div class="col-6" style="background-color: #45B7D1; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 6</span>
+            </div>
+        </div>
+
+        <!-- Row 5: Full width example -->
+        <h2>Row 5: Full Width Column</h2>
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-12" style="background-color: #9B59B6; padding: 10px; border: 1px solid #ccc;">
+                <span style="color: white; font-weight: bold;">Col 12 (Full Width)</span>
+            </div>
+        </div>
+
+        <!-- Information Section -->
+        <h2>Bootstrap 12-Column Grid Information:</h2>
+        <ul style="font-size: 16px; line-height: 1.8;">
+            <li><strong>Total Columns:</strong> 12 (Fixed in Bootstrap grid)</li>
+            <li><strong>Number of Rows:</strong> <strong>Unlimited/Unlimited as per feasibility</strong>
+                <ul>
+                    <li>No hard limit on rows - depends on content and performance</li>
+                    <li>Each row can have multiple responsive columns</li>
+                    <li>Typically 3-5 rows per section is recommended for UX</li>
+                </ul>
+            </li>
+            <li><strong>Column Options:</strong> col-1, col-2, col-3, col-4, col-5, col-6, col-7, col-8, col-9, col-10, col-11, col-12</li>
+            <li><strong>Responsive Prefixes:</strong> col-sm-, col-md-, col-lg-, col-xl-, col-xxl-</li>
+            <li><strong>Equal Width:</strong> Use <code>.col</code> without number for equal-width columns</li>
+        </ul>
+    </div>
+</body>
+</html>

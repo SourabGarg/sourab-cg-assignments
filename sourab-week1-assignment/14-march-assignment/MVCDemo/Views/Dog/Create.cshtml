@@ -1,0 +1,136 @@
+@model MVCDemo.Models.Dog
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 15px;
+    }
+
+    .form-section {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    .form-text {
+        font-size: 12px;
+        color: #666;
+        margin-top: 5px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .submit-btn {
+        flex: 1;
+        padding: 12px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .submit-btn:hover {
+        background-color: #218838;
+    }
+
+    .back-link {
+        flex: 1;
+        padding: 12px;
+        background-color: #6c757d;
+        color: white;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 4px;
+    }
+
+    .back-link:hover {
+        background-color: #5a6268;
+    }
+
+    .validation-error {
+        color: #dc3545;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
+
+<div class="container">
+    <h1>Create Dog</h1>
+
+    <div class="form-section">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Id" class="control-label">ID</label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Age" class="control-label">Age</label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label">Dog Image (Optional)</label>
+                <input asp-for="ImageFile" type="file" accept="image/*" class="form-control" />
+                <p class="form-text">Supported formats: JPG, PNG, GIF, WebP. Max file size: 5MB</p>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="submit-btn">Create Dog</button>
+                <a asp-action="Index" class="back-link">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

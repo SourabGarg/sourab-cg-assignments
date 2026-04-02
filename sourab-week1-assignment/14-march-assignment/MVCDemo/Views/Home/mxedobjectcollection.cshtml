@@ -1,0 +1,226 @@
+﻿@model MVCDemo.Models.EmpViewModel
+@{
+    ViewData["Title"] = "mxedobjectcollection";
+}
+
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    .search-container {
+        background-color: #e7f3ff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .search-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .search-form label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .search-form input {
+        padding: 10px 15px;
+        border: 1px solid #007bff;
+        border-radius: 4px;
+        font-size: 14px;
+        min-width: 150px;
+    }
+
+    .search-form button {
+        padding: 10px 25px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .search-form button:hover {
+        background-color: #0056b3;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        color: #007bff;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        border-left: 4px solid #007bff;
+        padding-left: 10px;
+    }
+
+    .info-section {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .info-row:last-child {
+        border-bottom: none;
+    }
+
+    .info-label {
+        font-weight: bold;
+        color: #555;
+        width: 30%;
+    }
+
+    .info-value {
+        color: #333;
+        width: 70%;
+    }
+
+    .emp-image {
+        text-align: center;
+        margin: 15px 0;
+    }
+
+    .emp-image img {
+        border-radius: 50%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    td {
+        padding: 12px;
+        color: #333;
+    }
+
+    tr:hover {
+        background-color: #e9ecef;
+    }
+
+    .date-section {
+        background-color: #e7f3ff;
+        padding: 15px;
+        border-left: 4px solid #007bff;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .date-section strong {
+        color: #007bff;
+    }
+</style>
+
+<div class="container">
+    <h1>Mixed Object Collection</h1>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <form method="get" asp-action="mxedobjectcollection" class="search-form">
+            <label for="empid">Search Employee ID:</label>
+            <input type="number" id="empid" name="empid" placeholder="Enter Employee ID" required />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <!-- Employee Information -->
+    <h2>Employee Information</h2>
+    <div class="info-section">
+        @if (Model.emp != null)
+        {
+            <div class="emp-image">
+                <img src="@Model.emp.imageurl" alt="@Model.emp.empName" width="200" height="200" />
+            </div>
+            <div class="info-row">
+                <span class="info-label">Employee ID:</span>
+                <span class="info-value">@Model.emp.empId</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Name:</span>
+                <span class="info-value">@Model.emp.empName</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Salary:</span>
+                <span class="info-value">$@Model.emp.salary</span>
+            </div>
+        }
+        else
+        {
+            <p>No employee information available.</p>
+        }
+    </div>
+
+    <!-- Date Information -->
+    <h2>Date Information</h2>
+    <div class="date-section">
+        <strong>Current Date:</strong> @Model.date.ToString("MMMM dd, yyyy")
+    </div>
+
+    <!-- Department List -->
+    <h2>Department List</h2>
+    <div class="info-section">
+        @if (Model.deptList != null && Model.deptList.Count > 0)
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department ID</th>
+                        <th>Department Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dept in Model.deptList)
+                    {
+                        <tr>
+                            <td>@dept.DeptId</td>
+                            <td>@dept.DeptName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No department information available.</p>
+        }
+    </div>
+</div>

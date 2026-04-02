@@ -1,0 +1,109 @@
+@model List<MVCDemo.Models.Dept>
+@{
+    ViewData["Title"] = "ViewDepartments";
+}
+
+<style>
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 40px;
+        border-bottom: 3px solid #007bff;
+        padding-bottom: 15px;
+    }
+
+    .dept-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .dept-card {
+        background-color: #f5f5f5;
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-left: 4px solid #007bff;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+
+    .dept-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        background-color: #e7f3ff;
+    }
+
+    .dept-card h3 {
+        color: #007bff;
+        margin: 0 0 15px 0;
+        font-size: 20px;
+    }
+
+    .dept-card p {
+        color: #666;
+        margin: 10px 0;
+    }
+
+    .dept-id {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .view-employees-link {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-weight: bold;
+    }
+
+    .view-employees-link:hover {
+        background-color: #0056b3;
+    }
+
+    .no-depts {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+        font-size: 18px;
+    }
+</style>
+
+<div class="container">
+    <h1>Departments</h1>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="dept-grid">
+            @foreach (var dept in Model)
+            {
+                <div class="dept-card">
+                    <h3>@dept.DeptName</h3>
+                    <p><span class="dept-id">Department ID:</span> @dept.DeptId</p>
+                    <a class="view-employees-link" asp-action="ViewEmployeesByDepartment" asp-route-deptid="@dept.DeptId">
+                        View Employees
+                    </a>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="no-depts">
+            <p>No departments available.</p>
+        </div>
+    }
+</div>

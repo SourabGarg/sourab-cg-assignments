@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive JavaScript Demo</title>
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        #feedback {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        #feedback:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .char-count {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        #results {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+            min-height: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .error {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .error.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎯 Interactive JavaScript Demo</h1>
+        
+        <!-- Example 1: Click Feedback -->
+        <div class="section">
+            <h2>Example 1: Click Feedback (Click the box below)</h2>
+            <div id="feedback" onclick="goodbye()" title="Click me!"></div>
+        </div>
+        
+        <!-- Example 2: Text Repeater -->
+        <div class="section">
+            <h2>Example 2: Text Repeater</h2>
+            
+            <div class="form-group">
+                <label for="sayThis">What do you want to say?</label>
+                <input type="text" id="sayThis" placeholder="Enter your text here..." onkeypress="handleKeyPress(event)" maxlength="100">
+                <div class="char-count"><span id="charCount">0</span>/100</div>
+                <div class="error" id="error">Please enter some text!</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="howMany">How many times?</label>
+                <select id='howMany'>
+                    <option value=1>1</option>
+                    <option value=5 selected>5</option>
+                    <option value=10>10</option>
+                    <option value=20>20</option>
+                </select>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-primary" onclick='doLoop()'>Do It!</button>
+                <button class="btn-secondary" onclick='clearResults()'>Clear</button>
+            </div>
+            
+            <div id="results"></div>
+        </div>
+    </div>
+    
+    <script language="Javascript">
+
+        // Example 1: Click Feedback
+        document.getElementById('feedback').innerHTML = "👋 Hello World! Click me!";
+        
+        function goodbye() {
+            document.getElementById('feedback').innerHTML = "👋 Goodbye!";
+            setTimeout(function() {
+                document.getElementById('feedback').innerHTML = "👋 Hello World! Click me!";
+            }, 2000);
+        }
+
+        // Example 2: Text Repeater
+        var sayThisInput = document.getElementById('sayThis');
+        var errorMsg = document.getElementById('error');
+        
+        sayThisInput.addEventListener('input', function() {
+            document.getElementById('charCount').textContent = sayThisInput.value.length;
+            errorMsg.classList.remove('show');
+        });
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                doLoop();
+            }
+        }
+        
+        function doLoop() {
+            var text = sayThisInput.value.trim();
+            var times = document.getElementById('howMany').value;
+            
+            if (text === '') {
+                errorMsg.classList.add('show');
+                return;
+            }
+            
+            errorMsg.classList.remove('show');
+            var output = "";
+            
+            for (var i = 1; i <= times; i++) {
+                output += "<strong>" + i + ".</strong> " + text + "<br>";
+            }
+            
+            document.getElementById('results').innerHTML = output;
+        }
+        
+        function clearResults() {
+            sayThisInput.value = '';
+            document.getElementById('charCount').textContent = '0';
+            document.getElementById('results').innerHTML = '';
+            errorMsg.classList.remove('show');
+            sayThisInput.focus();
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="AzureBlobProject/AzureBlobProject.csproj" Id="d1bb05e6-b8d7-477b-93ca-faf4d79fe881" />
+  <Project Path="AzureStorageDemo/AzureStorageDemo.csproj" Id="6737ebed-d46d-4010-8979-d1ed903efc4a" />
+  <Project Path="WebAPIinAsp.netcoreMvcDemo/WebAPIinAsp.netcoreMvcDemo.csproj" />
+</Solution>

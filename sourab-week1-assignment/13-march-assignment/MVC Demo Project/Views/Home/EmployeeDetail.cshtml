@@ -1,0 +1,179 @@
+@model MVC_Demo_Project.Models.Employee
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    .container {
+        max-width: 700px;
+        margin: 40px auto;
+    }
+
+    .detail-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        overflow: hidden;
+    }
+
+    .detail-header {
+        background: linear-gradient(135deg, #4a90d9 0%, #357abd 100%);
+        color: white;
+        padding: 40px;
+        text-align: center;
+    }
+
+    .detail-avatar {
+        margin-bottom: 20px;
+    }
+
+    .detail-avatar img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 5px solid white;
+    }
+
+    .detail-header h1 {
+        margin: 0;
+        font-size: 28px;
+    }
+
+    .detail-body {
+        padding: 30px;
+    }
+
+    .detail-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-label {
+        font-weight: bold;
+        color: #4a90d9;
+        min-width: 120px;
+    }
+
+    .detail-value {
+        color: #333;
+    }
+
+    .salary-highlight {
+        color: #27ae60;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .department-box {
+        background-color: #f0f4f8;
+        padding: 15px;
+        border-left: 4px solid #4a90d9;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .description-box {
+        background-color: #f0f4f8;
+        padding: 15px;
+        border-left: 4px solid #4a90d9;
+        border-radius: 4px;
+        margin-top: 20px;
+        line-height: 1.6;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #4a90d9;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #357abd;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>
+
+<div class="container">
+    <div class="detail-card">
+        <div class="detail-header">
+            <div class="detail-avatar">
+                <img src="@Model.ImageUrl" alt="@Model.EmpName" />
+            </div>
+            <h1>@Model.EmpName</h1>
+        </div>
+        <div class="detail-body">
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-id-badge"></i> Employee ID:</span>
+                <span class="detail-value">@Model.EmployeeId</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-money-bill"></i> Salary:</span>
+                <span class="detail-value salary-highlight">₹@Model.Salary.ToString("N0")</span>
+            </div>
+
+            @if (Model.Department != null)
+            {
+                <div class="department-box">
+                    <strong><i class="fas fa-building"></i> Department:</strong>
+                    <p>@Model.Department.DepartmentName</p>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.Description))
+            {
+                <div class="description-box">
+                    <strong><i class="fas fa-info-circle"></i> About:</strong>
+                    <p>@Model.Description</p>
+                </div>
+            }
+
+            <div class="button-group">
+                @if (Model.Department != null)
+                {
+                    <a href="@Url.Action("DepartmentEmployees", "Home", new { id = Model.DepartmentId })" class="btn btn-primary">
+                        <i class="fas fa-arrow-left"></i> Back to @Model.Department.DepartmentName
+                    </a>
+                    <a href="@Url.Action("DepartmentDetail", "Home", new { id = Model.Department.DepartmentId })" class="btn btn-secondary">
+                        <i class="fas fa-building"></i> View Department
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

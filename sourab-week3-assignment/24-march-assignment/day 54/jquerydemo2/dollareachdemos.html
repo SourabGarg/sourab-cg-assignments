@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+
+    </script>
+    <script type="text/javascript" language="Javascript">
+         var friends = ["sunitha", "mahesh", "kiran", "sanmay"];
+
+            var objs = [{ "name": "sita", "age": "23" }, { "name": "rajesh", "age": "55" }, { "name": "kiran", "age": "22" },
+            { "name": "praveen", "age": "27" }]
+
+            $(document).ready();
+        </script>
+</head>
+<body>
+    <ul>
+        <li>US</li>
+        <li>India</li>
+        <li>UK</li>
+        <li>Canada</li>
+        <li>Australia</li>
+    </ul>
+    
+    <div id="divresult" style="background-color: yellow;">
+    
+     
+    
+    </div> 
+</body>
+</html>
+
+updated code 
+--------------
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+
+    </script>
+    <script type="text/javascript" language="Javascript">
+        var friends = ["sunitha", "mahesh", "kiran", "sanmay"];
+
+        var objs = [{ "name": "sita", "age": "23" }, { "name": "rajesh", "age": "55" }, { "name": "kiran", "age": "22" },
+        { "name": "praveen", "age": "27" }]
+
+        $(document).ready(
+
+            function () {
+
+                $.each(friends, function (index, value) {
+                    console.log((index + 1) + ":----->" + value);
+
+                })
+
+                $.each(objs, function (index, value) {
+                    console.log((index + 1) + ":" + value.name + " is having age " + value.age);
+                })
+
+                console.log("I want to iterate list")
+                $("li").each(function (index, element) {
+                    alert((index + 1) + ": " + $(element).text())
+                })
+
+                console.log("I want to iterate using reference")
+
+                $("li").each(function (index) {
+                    alert((index + 1) + ":" + $(this).text());
+                })
+
+                console.log("iterating collection and puttin in div tage result ");
+
+                var results = "";
+                $.each(friends, function (index, value) {
+
+                    results += "<br/><li>" + value + "</li>"
+                })
+                $("#divresult").html(results);
+
+
+
+            }
+
+
+
+
+
+
+        );
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>US</li>
+        <li>India</li>
+        <li>UK</li>
+        <li>Canada</li>
+        <li>Australia</li>
+    </ul>
+
+    <div id="divresult" style="background-color: yellow;">
+
+
+
+    </div>
+</body>
+
+</html>

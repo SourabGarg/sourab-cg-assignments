@@ -1,0 +1,40 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js">
+</script>
+<script type="text/javascript" language="Javascript">
+    $(document).ready(
+        function () {
+            $("div").mouseenter(
+
+                function () {
+                    $("#myimg").attr("src", "smileyhover.jpeg")
+                }
+
+            );
+
+            $("div").mouseleave(
+
+                function () {
+                    $("#myimg").attr("src", "smileynormal.jpeg")
+                }
+            )
+
+        }
+
+    )
+</script>
+
+<body>
+    <div>
+        <img id="myimg" src="smileyhover.jpeg" width="300px" height="300px" alt="Sample image" />
+    </div>
+</body>
+
+</html>

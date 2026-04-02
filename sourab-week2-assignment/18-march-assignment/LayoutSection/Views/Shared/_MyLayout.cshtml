@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_MyLayout</title>
+</head>
+<body>
+    <style type="text/css">
+            .auto-style1 {
+                width: 373px;
+            }
+    </style>
+  
+    <table style="width:100%;">
+        <tr>
+            <td colspan="2" style="background-color: #66FFCC">&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="auto-style1" style="background-color: #FF3399">
+                <br />
+                <br />
+                @if (IsSectionDefined("hyperlinktags"))
+                {
+                    @RenderSection("hyperlinktags", false)
+                }
+                else
+                {
+                    <ul>
+                        <li> @Html.ActionLink("empdata", "index", "Emp")</li>
+                        <li> @Html.ActionLink("deptdata", "Index", "Dept")</li>
+                    </ul>
+                }
+              
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </td>
+            <td>@RenderBody()</td>
+        </tr>
+        <tr>
+            @RenderSection("Capgemini", false);
+            <td colspan="2" style="background-color:yellow">&nbsp;</td>
+        </tr>
+    </table>
+</body>
+</html>

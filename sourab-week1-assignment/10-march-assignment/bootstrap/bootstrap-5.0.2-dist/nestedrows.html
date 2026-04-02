@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Nested Rows - Real-life Examples</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px 0;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .section-title {
+            background-color: #667eea;
+            color: white;
+            padding: 15px;
+            margin: 30px 0 20px 0;
+            font-size: 1.3em;
+            border-radius: 5px;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .nested-box {
+            background: #f9f9f9;
+            padding: 10px;
+            margin-top: 10px;
+            border-left: 3px solid #667eea;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 150px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .comment-box {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 3px solid #667eea;
+            border-radius: 3px;
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .comment-text {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .reply-box {
+            background: white;
+            padding: 10px 15px;
+            margin-top: 8px;
+            margin-left: 20px;
+            border-left: 2px solid #764ba2;
+        }
+        .dashboard-stat {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .note-box {
+            background: #fff8dc;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 3px;
+        }
+        .code-example {
+            background: #f4f4f4;
+            border-left: 3px solid #667eea;
+            padding: 12px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>🎯 Bootstrap Nested Rows - Real-life Examples</h1>
+        <p>Learn how to use nested rows for professional websites and applications</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Example 1: E-commerce Product Card -->
+        <div class="section-title">📦 Example 1: E-commerce Product Card (Nested Layout)</div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="product-card">
+                    <div class="product-image">🛍️</div>
+                    <div class="product-details">
+                        <div class="row">
+                            <div class="col-8">
+                                <h5>Premium Headphones</h5>
+                                <p style="color: #666; font-size: 0.9em;">High quality audio</p>
+                            </div>
+                            <div class="col-4" style="text-align: right;">
+                                <div style="color: #667eea; font-weight: bold; font-size: 1.2em;">$99</div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-6">
+                                <button style="width: 100%; padding: 8px; background: #667eea; color: white; border: none; border-radius: 3px;">Add to Cart</button>
+                            </div>
+                            <div class="col-6">
+                                <button style="width: 100%; padding: 8px; background: #f0f0f0; color: #333; border: none; border-radius: 3px;">❤️ Like</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-6 col-sm-12">
+                <div class="box">
+                    <strong>💡 How It Works:</strong>
+                    <div class="code-example">
+&lt;div class="product-details"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-8"&gt; Product Info &lt;/div&gt;
+        &lt;div class="col-4"&gt; Price &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="row"&gt; &lt;!-- Nested Row --&gt;
+        &lt;div class="col-6"&gt; Add to Cart Button &lt;/div&gt;
+        &lt;div class="col-6"&gt; Like Button &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="note-box">
+                        <strong>✓ Real-life Use:</strong> Used on Amazon, Flipkart, Myntra - Every product card has nested rows for image + price + buttons
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 2: Blog Post with Comments -->
+        <div class="section-title">💬 Example 2: Blog Post with Comment Replies (Nested Comments)</div>
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+                <div class="box">
+                    <strong>💡 Key Concept:</strong>
+                    <div class="code-example">
+&lt;div class="comment"&gt;
+    Main Comment
+    
+    &lt;div class="row"&gt;
+        &lt;div class="col-12"&gt;
+            &lt;div class="reply"&gt;
+                Reply 1
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="note-box">
+                        <strong>✓ Real-life Use:</strong> Facebook comments, YouTube comments, Medium articles
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-12">
+                <div class="comment-box">
+                    <div class="comment-author">👤 John Doe</div>
+                    <div class="comment-text">Great article! Really helpful for beginners.</div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-12">
+                            <div class="reply-box">
+                                <div class="comment-author">👤 Jane Smith</div>
+                                <div class="comment-text">Thanks! I'm glad it helped you understand Bootstrap better.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 5px;">
+                        <div class="col-12">
+                            <div class="reply-box">
+                                <div class="comment-author">👤 Mike Johnson</div>
+                                <div class="comment-text">Can you explain nested rows more? This helps!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment-box">
+                    <div class="comment-author">👤 Sarah Wilson</div>
+                    <div class="comment-text">Excellent tutorial! Looking forward to more.</div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-12">
+                            <div class="reply-box">
+                                <div class="comment-author">👤 Author</div>
+                                <div class="comment-text">Thank you! More advanced examples coming soon.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 3: Dashboard with Stats -->
+        <div class="section-title">📊 Example 3: Admin Dashboard (Nested Dashboard Cards)</div>
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dashboard-stat">
+                            <div class="stat-number">1,234</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dashboard-stat">
+                            <div class="stat-number">$45.2K</div>
+                            <div class="stat-label">Revenue</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dashboard-stat">
+                            <div class="stat-number">856</div>
+                            <div class="stat-label">Orders</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="dashboard-stat">
+                            <div class="stat-number">92%</div>
+                            <div class="stat-label">Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 20px;">
+                    <h5>📈 Sales by Category</h5>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-6">
+                            <strong>Electronics: </strong><div style="background: #667eea; height: 20px; border-radius: 3px; width: 70%;"></div>
+                        </div>
+                        <div class="col-6">
+                            <strong>Fashion: </strong><div style="background: #764ba2; height: 20px; border-radius: 3px; width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="box">
+                    <strong>💡 How It Works:</strong>
+                    <div class="code-example">
+&lt;div class="dashboard"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-3"&gt; Stat Card 1 &lt;/div&gt;
+        &lt;div class="col-3"&gt; Stat Card 2 &lt;/div&gt;
+        &lt;div class="col-3"&gt; Stat Card 3 &lt;/div&gt;
+        &lt;div class="col-3"&gt; Stat Card 4 &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="note-box">
+                        <strong>✓ Real-life Use:</strong> Google Analytics, Shopify, Admin panels
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 4: Header + Sidebar + Content -->
+        <div class="section-title">🏠 Example 4: Complete Page Layout (Header, Sidebar, Content)</div>
+        <div class="box">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-12" style="background: #333; color: white; padding: 20px; border-radius: 5px;">
+                    <h5 style="margin: 0;">🔝 Header / Navigation</h5>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-lg-3 col-md-4 col-sm-12" style="background: #f0f0f0; padding: 15px; border-radius: 5px;">
+                    <h6>📋 Sidebar Menu</h6>
+                    <div style="margin-top: 10px;">
+                        <div>🏠 Dashboard</div>
+                        <div style="margin-top: 8px;">📦 Products</div>
+                        <div style="margin-top: 8px;">👥 Users</div>
+                        <div style="margin-top: 8px;">⚙️ Settings</div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-12" style="background: white; padding: 15px; border-radius: 5px;">
+                    <h6>📝 Main Content Area</h6>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6" style="background: #e8f4f8; padding: 10px; border-radius: 3px;">
+                            <strong>Content Section 1</strong>
+                        </div>
+                        <div class="col-md-6" style="background: #e8e8f4; padding: 10px; border-radius: 3px;">
+                            <strong>Content Section 2</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" style="background: #555; color: white; padding: 15px; border-radius: 5px;">
+                    <h6 style="margin: 0;">🔗 Footer</h6>
+                </div>
+            </div>
+        </div>
+        <div class="note-box">
+            <strong>✓ Real-life Use:</strong> Every website admin panel, dashboard, or portal follows this layout
+        </div>
+
+        <!-- Example 5: Product Review Section -->
+        <div class="section-title">⭐ Example 5: Product Reviews with Nested Ratings</div>
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="box">
+                    <div class="row">
+                        <div class="col-2" style="text-align: center;">
+                            <div style="font-size: 2em;">👤</div>
+                            <small>User</small>
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong>Amazing Product!</strong>
+                                </div>
+                                <div class="col-4" style="text-align: right;">
+                                    ⭐⭐⭐⭐⭐
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col-12">
+                                    <p style="color: #666; font-size: 0.9em;">Best purchase I've made this year. Highly recommend!</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <small style="color: #999;">2 days ago • Verified Purchase</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="row">
+                        <div class="col-2" style="text-align: center;">
+                            <div style="font-size: 2em;">👤</div>
+                            <small>User</small>
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-8">
+                                    <strong>Good but needs improvement</strong>
+                                </div>
+                                <div class="col-4" style="text-align: right;">
+                                    ⭐⭐⭐⭐
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 8px;">
+                                <div class="col-12">
+                                    <p style="color: #666; font-size: 0.9em;">Works well overall but the manual could be clearer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="box">
+                    <strong>💡 Structure:</strong>
+                    <div class="code-example">
+&lt;div class="review"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-2"&gt; Avatar &lt;/div&gt;
+        &lt;div class="col-10"&gt;
+            &lt;div class="row"&gt;
+                &lt;div class="col-8"&gt; Title &lt;/div&gt;
+                &lt;div class="col-4"&gt; Rating &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="row"&gt;
+                Review Text
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="note-box">
+                        <strong>✓ Real-life Use:</strong> Amazon reviews, Google reviews, Airbnb
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 6: Card Grid with Breakdown -->
+        <div class="section-title">🎴 Example 6: Team Member Cards with Details</div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="box">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100px; color: white; display: flex; align-items: center; justify-content: center; border-radius: 5px; font-size: 3em;">👨</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-12">
+                            <h6>John Doe</h6>
+                            <p style="color: #667eea; margin: 0;">Senior Developer</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-6">
+                            <small>📧 john@email.com</small>
+                        </div>
+                        <div class="col-6" style="text-align: right;">
+                            <small>🔗 GitHub</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="box">
+                    <div class="row">
+                        <div class="col-12">
+                            <div style="background: linear-gradient(135deg, #764ba2 0%, #6C5CE7 100%); height: 100px; color: white; display: flex; align-items: center; justify-content: center; border-radius: 5px; font-size: 3em;">👩</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-12">
+                            <h6>Sarah Smith</h6>
+                            <p style="color: #667eea; margin: 0;">Designer</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-6">
+                            <small>📧 sarah@email.com</small>
+                        </div>
+                        <div class="col-6" style="text-align: right;">
+                            <small>🔗 LinkedIn</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="box">
+                    <strong>💡 Card Structure:</strong>
+                    <div class="code-example">
+&lt;div class="card"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-12"&gt; Image &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="row"&gt;
+        &lt;div class="col-12"&gt; Name, Role &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="row"&gt;
+        &lt;div class="col-6"&gt; Email &lt;/div&gt;
+        &lt;div class="col-6"&gt; Social Link &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 7: The Original Example Explained -->
+        <div class="section-title">🔄 Example 7: The Original Code Explained</div>
+        <div class="box">
+            <h6>What does it demonstrate?</h6>
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="nested-box">
+                        <strong>Row 1:</strong> Simple 2-column layout
+                        <div class="code-example" style="margin-top: 8px;">
+col-lg-6 + col-lg-6 = 12 cols
+                        </div>
+                    </div>
+                    <div class="nested-box">
+                        <strong>Row 2:</strong> Responsive change - columns behave differently on different screen sizes
+                        <div class="code-example" style="margin-top: 8px;">
+Large: 2+8+2 = 12
+Medium: 8+3+1 = 12
+Small: 6+1+5 = 12
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="nested-box">
+                        <strong>Row 3:</strong> Contains 2 columns
+                        <div class="code-example" style="margin-top: 8px;">
+col-lg-6 + col-lg-6 = 12
+                        </div>
+                    </div>
+                    <div class="nested-box">
+                        <strong>Row 4 (NESTED):</strong> A row INSIDE Row 3's second column!
+                        <div class="code-example" style="margin-top: 8px;">
+Nested Row 4:
+col-lg-8 + col-lg-4 = 12
+(But only takes up 6 cols parent width)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="section-title">✅ Key Takeaways - When to Use Nested Rows</div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="box">
+                    <h6>✓ Use Nested Rows For:</h6>
+                    <ul style="margin: 10px 0;">
+                        <li>Product cards with image + price + buttons</li>
+                        <li>Comments with nested replies</li>
+                        <li>Dashboard sections with sub-stats</li>
+                        <li>Team cards with avatar + info + links</li>
+                        <li>Reviews with user + rating + text</li>
+                        <li>Complex form sections</li>
+                        <li>Blog posts with comments section</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="box">
+                    <h6>💡 Remember:</h6>
+                    <ul style="margin: 10px 0;">
+                        <li>Nested rows are relative to their parent column width</li>
+                        <li>Always add a new .row class inside a .col-* div</li>
+                        <li>Columns in nested row still add up to 12</li>
+                        <li>Mobile-first approach: Add col-12 first, then responsive classes</li>
+                        <li>Use for organizing complex, hierarchical content</li>
+                        <li>Makes code cleaner and more maintainable</li>
+                        <li>Perfect for real-world websites and apps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+@model IEnumerable<MVC_Demo_Project.Models.Employee>
+@{
+    ViewData["Title"] = "Employee List";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+    .employees-container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .employee-card {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .employee-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    .employee-avatar img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #4a90d9;
+    }
+
+    .employee-info {
+        flex: 1;
+    }
+
+    .employee-info h3 {
+        margin: 0;
+        color: #333;
+    }
+
+    .employee-info p {
+        margin: 5px 0;
+        color: #666;
+        font-size: 14px;
+    }
+
+    .employee-id {
+        font-weight: bold;
+        color: #4a90d9;
+    }
+
+    .employee-salary {
+        color: #27ae60;
+        font-weight: bold;
+    }
+
+    .view-details {
+        padding: 8px 16px;
+        background-color: #4a90d9;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+
+    .view-details:hover {
+        background-color: #357abd;
+    }
+</style>
+
+<div class="employees-container">
+    <div class="page-header">
+        <h1><i class="fas fa-users"></i> Employees</h1>
+        <p>View all company employees</p>
+    </div>
+
+    @foreach(var emp in Model)
+    {
+        <div class="employee-card">
+            <div class="employee-avatar">
+                <img src="@emp.ImageUrl" alt="@emp.EmpName" />
+            </div>
+            <div class="employee-info">
+                <h3>@emp.EmpName</h3>
+                <p><span class="employee-id"><i class="fas fa-id-badge"></i> ID:</span> @emp.EmployeeId</p>
+                <p><span class="employee-salary"><i class="fas fa-money-bill"></i> Salary:</span> ₹@emp.Salary.ToString("N0")</p>
+                <p>@emp.Description</p>
+            </div>
+            <a href="@Url.Action("EmployeeDetail", "Home", new { id = emp.EmployeeId })" class="view-details"><i class="fas fa-arrow-right"></i> View Details</a>
+        </div>
+    }
+</div>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card mx-auto" style="width: 400px;">
+    <div class="card-header bg-info text-white" id="empName">
+        Employee Name
+    </div>
+
+    <img id="empImg"
+         class="card-img-top"
+         src="/Uploads/default.jpeg"
+         style="height:300px; object-fit:cover;" />
+
+    <div class="card-body">
+        <p><strong>Email:</strong> <span id="empEmail"></span></p>
+        <p><strong>Age:</strong> <span id="empAge"></span></p>
+
+        <a href="/EmployeeUI/Index" class="btn btn-secondary">Back</a>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (!id) {
+            window.location.href = "/EmployeeUI/Index";
+            return;
+        }
+
+        $.get(`/api/Emp/${id}`, function (emp) {
+
+            $("#empName").text(emp.firstName + " " + emp.lastName);
+            $("#empEmail").text(emp.email);
+            $("#empAge").text(emp.age);
+
+            $("#empImg").attr("src", emp.imageUrl || "/Uploads/default.jpeg");
+        })
+        .fail(function () {
+            alert("Failed to load employee details.");
+            window.location.href = "/EmployeeUI/Index";
+        });
+
+    });
+</script>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo" style="background:rgb(177, 113, 35);width:90%;height:100px;
+                    font-size:large;font-weight:900px ;">
+    </p>
+    <script>
+        //difference between var,let and const 
+        var kk = "hai";
+        kk = "hi"// can reassign
+        {
+            var kk = "hello";
+        }
+        console.log(kk);
+
+        let kk1 = "hai";
+        kk1 = "hi"// can reassign
+        {
+            let kk1 = "hello"
+        }
+        console.log(kk1);
+
+        const kk2 = "hai";
+        // kk2 = "hi";// u cannot assign here const value in run time it will give error 
+        console.log(kk2);
+
+        let cars = ["BMW", "Hyndai", "TATA", "Skoda"];
+
+        document.getElementById("demo").innerHTML = cars;
+
+        // first car 
+
+        let firstcar = cars[0];
+
+        document.getElementById("demo").innerHTML = firstcar;
+        
+        //no elements in array
+
+        let length=cars.length;
+
+       document.getElementById("demo").innerHTML =length;
+
+       // last car
+
+       let lastcar=cars[cars.length-1]
+
+       document.getElementById("demo").innerHTML = lastcar;
+        
+       //loop over the array and put it i p tag 
+
+        var str = "";
+            for (var i = 0; i < cars.length; i++) {
+                str = str + (i + 1) + ":" + cars[i] + "<br/>";
+            }
+            document.getElementById("demo").innerHTML = str;
+
+        // using for each loop 
+
+        cars.forEach((item,index,array)=>{console.log(index+1)+"----->"+item});
+
+        // removing last car 
+
+        let lastcar1=cars.pop();
+
+    document.getElementById("demo").innerHTML = lastcar1;
+
+    // adding at the last 
+
+    let lastcar2=cars.push("AUDI");
+
+    document.getElementById("demo").innerHTML = cars;
+       
+    </script>
+</body>
+</html>

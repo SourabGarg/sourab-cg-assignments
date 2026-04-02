@@ -1,0 +1,63 @@
+﻿@model IEnumerable<DBFirstEFInASP.Models.ProdCat>
+
+@{
+    ViewData["Title"] = "ProductsInCategory";
+}
+
+<h1>Products In Category</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            @* <h2>Products in Category</h2> *@
+            
+            <form method="get" action="/NorthWind/ProductsInCategory">
+                <div class="row mb-3">
+                    <div class="col-lg-2">
+                        <input type="text" id="category" name="categoryname" 
+                               class="form-control" placeholder="Enter category name" />
+                    </div>
+                    <div class="col-lg-1">
+                        <input type="submit" id="SearchProducts" 
+                               class="btn btn-primary" value="Search" />
+                    </div>
+                </div>
+            </form>
+
+            @if (Model.Any())
+            {
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().prodname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().catname)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.prodname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.catname)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-info" role="alert">
+                    No products found. Try searching for a category.
+                </div>
+            }
+        </div>
+    </div>
+</div>

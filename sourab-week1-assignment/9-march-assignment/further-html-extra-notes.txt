@@ -1,0 +1,227 @@
+FURTHER HTML EXTRA NOTES
+========================
+
+Advantages of form:
+-------------------
+1) Collecting names, addresses, telephone numbers, e-mail address and other information to register users for a service or an event.
+2) Gathering information for the purchase of an item. For example, if we want to purchase a book on the internet, we have to fill all relevant information.
+3) Collecting feedback from the website.
+4) Providing a search tool for the website, so users can locate information faster.
+
+To write a form we first use <form> tags.
+
+Important form attributes:
+--------------------------
+1) Accept:
+   Defines the list of MIME types recognized by the server that processes the form.
+   Syntax:
+   ACCEPT="internet media type"
+   This attribute is used rarely.
+
+2) Action:
+   Tells where the form should go when the user clicks the submit button.
+   Syntax:
+   ACTION="URL"
+
+3) Method:
+   Specifies the method by which data is sent to the server.
+   If value is GET, browser appends query values in URL.
+
+   Syntax:
+   <form action="url" method="get">
+     contents of the form
+   </form>
+
+Example on GET method:
+----------------------
+Use GET when sending less, non-sensitive data.
+
+<html>
+<head>
+<title>form demo</title>
+</head>
+<body>
+<h2>Join the Mailing List:</h2>
+<form action="doc1.html" method="get">
+<pre>
+First Name: <input type="text" name="first">
+Last Name:  <input type="text" name="last">
+<input type="submit">  <input type="reset">
+</pre>
+</form>
+</body>
+</html>
+
+HTML INPUT ELEMENTS:
+--------------------
+The <input> element defines the type and appearance of controls to be displayed on the form.
+
+Common attributes:
+1) type: text, password, checkbox, etc.
+2) name: name of the control.
+3) value: optional value (often used with radio).
+4) size: width of control (example: size=30).
+5) maxlength: maximum number of characters in text/password.
+6) checked: boolean attribute for checkbox/radio default selection.
+7) src: used when input type is image.
+
+Button:
+-------
+<input type="button" value="click" name="b1">
+
+Text:
+-----
+<input type="text" value="" name="username" size="20">
+
+Checkbox:
+---------
+Use checkboxes when multiple options can be selected.
+
+<input type="checkbox" name="courses" value="check-box1"> C language <br>
+<input type="checkbox" name="courses" value="check-box2" checked> Java
+
+Submit:
+-------
+<input type="submit" value="click" name="b1">
+
+Image:
+------
+This creates a graphical submit button.
+<input type="image" src="url" name="blue_bulb">
+
+Reset:
+------
+Clears form values.
+<input type="reset" value="reset" name="b2">
+
+Code on the form using POST method:
+-----------------------------------
+<html>
+<head>
+<title>sample form demo</title>
+</head>
+<body bgcolor="#ffffcc">
+<table>
+<tr><td>
+<form action="doc1.html" method="post">
+<b><h2 align="left">Sample Stock recovery</h2></b>
+<p><b>Describe your investment experience</b></p>
+<p>
+<input type="radio" name="result-radio1" value="radio-0"> Beginner<br>
+<input type="radio" name="result-radio1" value="radio-1"> Intermediate<br>
+<input type="radio" name="result-radio1" value="radio-2"> Expert<br>
+</p>
+<p><b>Types of investments you make</b></p>
+<p>
+<input type="checkbox" name="resultcheckbox-1" value="checkbox-0"> Individual stocks<br>
+<input type="checkbox" name="resultcheckbox-1" value="checkbox-1"> Options<br>
+<input type="checkbox" name="resultcheckbox-1" value="checkbox-2"> Mutual funds<br>
+First Name: <input type="text" name="first" size="20"><br>
+Last Name:  <input type="password" name="password" size="10" maxlength="15"><br><br><br>
+<input type="submit"> <input type="reset"><br>
+</form></td></tr></table>
+</body></html>
+
+TextArea Element:
+-----------------
+Creates multiline text input control.
+Specify rows and columns.
+
+<textarea name="text1" cols="20" rows="5"></textarea>
+
+Select Element:
+---------------
+Used to display a list of choices for user.
+Each choice is represented by an <option> element.
+A select must contain at least one option.
+
+Optgroup Element:
+-----------------
+Used to group related options in hierarchy.
+
+Code for textarea, select and optgroup:
+---------------------------------------
+<html>
+<head>
+<title>Sample Form</title>
+</head>
+<body bgcolor="pink">
+<form action="doc1.html" method="post">
+<b><center><h2>Sample stock recovery</h2></center></b>
+<p><b>Investment advice for others</b></p>
+<textarea name="result_textarea" rows="7" cols="20"></textarea>
+<p><b>How do you buy your stocks</b>
+<select name="resultradio-5">
+<option></option>
+<option>1) On-line exam</option>
+<option>2) Touch stone trading</option>
+<option>3) Broken pieces</option>
+<option>4) Other</option>
+</select></p>
+
+<p><select name="course" multiple>
+<optgroup>
+<option>1) Introduction to HTML</option>
+<option>2) JavaScript</option>
+<option selected>3) Web designing</option>
+<option selected>4) Other</option>
+</optgroup>
+<optgroup>
+<option>1) C language</option>
+<option>2) C++ language</option>
+<option>3) Java language</option>
+<option>4) Other</option>
+</optgroup>
+</select><br><br>
+
+<button type="submit">send <img src="merlin.gif" alt="submit"></button>
+<button type="reset">reset <img src="merlin.gif" alt="reset"></button>
+</p>
+</form>
+</body></html>
+
+Label:
+------
+<label> is used to attach text information to form control elements.
+
+<html>
+<head>
+<title>Application Form</title>
+</head>
+<body>
+<h1><center><font size="4" color="ForestGreen">Application Form</font></center></h1><hr><br>
+<form action="" method="post">
+<p>
+<label for="firstname">Name:</label>
+<input type="text" id="firstname"><br>
+</p>
+
+<p>Area of Interest<br><br>
+<input type="radio" name="control1" value="0" checked> Web designer
+<input type="radio" name="control1" value="1"> Web Administrator
+<input type="radio" name="control1" value="2"> Web Developer
+</p>
+
+<p>Experience
+<select name="control2">
+<option>None</option>
+<option>1 year</option>
+<option>2 years</option>
+<option>4 years</option>
+</select><br>
+</p>
+
+<p>Comments<br>
+<textarea name="control3" cols="30" rows="5">Type your comments here</textarea>
+</p>
+
+<p><input type="checkbox" name="control4" checked> Send acknowledgement</p>
+<input type="submit" value="ok">
+<input type="reset" value="rechange">
+</form>
+</body></html>
+
+Flex Layout demo files:
+-----------------------
+1) 8-march-assignment/flex-layout/index.html
+2) 8-march-assignment/flex-layout/styles.css

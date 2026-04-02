@@ -1,0 +1,67 @@
+Html and css 
+------------
+CSS demos
+***********
+1. Layout & Box Model
+
+    Property            Description
+    -----------------------------------------------------------------
+    display            Controls how an element is displayed (e.g., block, inline, flex, grid).
+    position           Specifies the positioning ( static, relative, absolute, fixed, sticky ).
+    margin             Sets the outer space around an element ( margin: 10px; ).
+    padding            Sets the inner space inside an element ( padding: 10px; ).
+    width / height     Defines the size of an element ( width: 100px; height: 50px; ).
+    max-width / max-height Sets the maximum allowed width/height of an element.
+    overflow           Controls how content overflows ( visible, hidden, scroll, auto ).
+
+2. Typography (Text Styling)
+
+    Property           Description
+    -----------------------------------------------------------------
+    color             Sets the text color ( color: red; ).
+    font-size         Defines the text size ( font-size: 16px; ).
+    font-weight       Controls thickness ( normal, bold, lighter, bolder, 100-900 ).
+    font-family       Sets the font style ( font-family: Arial, sans-serif; ).
+    text-align        Aligns text ( left, center, right, justify ).
+3. Backgrounds & Borders
+
+    Property            Description
+    -----------------------------------------------------------------
+    background-color   Sets the background color ( background-color: blue; ).
+    background-image   Adds an image as a background ( background-image: url('image.jpg'); ).
+    background-size    Defines how the background image is scaled ( cover, contain ).
+    border            Defines borders ( border: 2px solid black; ).
+    border-radius      Rounds the corners ( border-radius: 10px; ).
+    box-shadow        Adds shadow around an element ( box-shadow: 3px 3px 5px gray; ).
+
+4. Flexbox & Grid (Responsive Design)
+
+    Property                Description
+    -----------------------------------------------------------------
+    display: flex          Enables flexbox layout.
+    flex-direction         Defines row or column layout ( row, column ).
+    justify-content        Aligns items horizontally ( flex-start, center, space-between ).
+    align-items            Aligns items vertically ( flex-start, center, stretch ).
+    grid-template-columns  Defines columns in a grid ( grid-template-columns: repeat(3, 1fr); ).
+    grid-gap               Sets spacing between grid items ( grid-gap: 10px; ).
+
+5. Transitions & Animations
+
+    Property            Description
+    -----------------------------------------------------------------
+    transition         Adds smooth effect ( transition: all 0.5s ease; ).
+    transform          Rotates, scales, or skews an element ( transform: rotate(45deg); ).
+    animation          Defines animations ( @keyframes needed ).
+    opacity            Controls visibility ( opacity: 0.5; ).
+
+6. Miscellaneous
+
+    Property            Description
+    -----------------------------------------------------------------
+    cursor            Changes the cursor type ( pointer, default, text ).
+    visibility        Shows or hides an element ( visible, hidden ).
+    z-index          Defines stacking order ( z-index: 10; ).
+
+    Along with html 4 tags some in built properties came but all were not given those means i cant apply bgcolor proeprty of body to h1 tag so they have 
+
+    introcucted css 

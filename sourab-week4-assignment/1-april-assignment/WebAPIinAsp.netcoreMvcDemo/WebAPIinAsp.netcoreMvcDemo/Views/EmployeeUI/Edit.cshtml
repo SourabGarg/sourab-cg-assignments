@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card mx-auto" style="width: 450px;">
+    <div class="card-header bg-warning text-white">
+        Edit Employee
+    </div>
+
+    <form id="editForm" enctype="multipart/form-data">
+
+        <img id="empImg"
+             class="card-img-top"
+             src="/Uploads/default.jpeg"
+             style="height: 300px; object-fit: cover;" />
+
+        <div class="card-body">
+
+            <input type="hidden" id="empId" name="id" />
+
+            <div class="mb-2">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="firstName" name="firstName" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="lastName" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Age</label>
+                <input type="number" class="form-control" id="age" name="age" min="1" max="100" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Change Image</label>
+                <input type="file" class="form-control" name="image" id="imageInput" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="/EmployeeUI/Index" class="btn btn-secondary">Cancel</a>
+
+        </div>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+
+        if (!id) {
+            window.location.href = "/EmployeeUI/Index";
+            return;
+        }
+
+        $.get(`/api/Emp/${id}`, function (emp) {
+
+            $("#empId").val(emp.id);
+            $("#firstName").val(emp.firstName);
+            $("#lastName").val(emp.lastName);
+            $("#email").val(emp.email);
+            $("#age").val(emp.age);
+
+            $("#empImg").attr("src", emp.imageUrl || "/Uploads/default.jpeg");
+        })
+        .fail(function () {
+            alert("Failed to load employee data");
+            window.location.href = "/EmployeeUI/Index";
+        });
+
+        $("#imageInput").change(function () {
+            const file = this.files[0];
+            if (file) {
+                $("#empImg").attr("src", URL.createObjectURL(file));
+            }
+        });
+
+        $("#editForm").submit(function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: `/api/Emp/${id}`,
+                type: "PUT",
+                data: formData,
+                contentType: false,
+                processData: false,
+
+                success: function () {
+                    alert("Employee updated successfully!");
+                    window.location.href = "/EmployeeUI/Index";
+                },
+
+                error: function (xhr) {
+                    alert("Error: " + xhr.responseText);
+                }
+            });
+        });
+
+    });
+</script>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DBFirstEFInASP.ViewModels.SpainCustomerViewModel>
+
+@{
+    ViewData["Title"] = "SpainCustomers";
+}
+
+<h1>SpainCustomers</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Conname)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Conname)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
