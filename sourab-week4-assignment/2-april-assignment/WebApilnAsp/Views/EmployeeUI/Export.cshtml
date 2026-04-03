@@ -1,0 +1,66 @@
+@{
+    ViewBag.Title = "Export Employee Data";
+    var exportApiUrl = Url.Content("~/api/Emp/export/excel");
+}
+
+<h3>Export Employee Data</h3>
+
+<div class="card">
+    <div class="card-body">
+        <div id="exportMessage"></div>
+        <div class="mb-3">
+            <label for="searchText" class="form-label">Search term</label>
+            <input type="text" id="searchText" class="form-control" placeholder="Search term (optional)" />
+        </div>
+        <button id="btnExport" class="btn btn-success" type="button">Export to Excel</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/employee-ui.js" asp-append-version="true"></script>
+    <script>
+        async function exportEmployees() {
+            const token = sessionStorage.getItem("jwt");
+            const search = $("#searchText").val().trim();
+            const url = search
+                ? '@exportApiUrl' + `?search=${encodeURIComponent(search)}`
+                : '@exportApiUrl';
+
+            if (!token) {
+                window.location.href = "/AuthenticationUI/Login";
+                return;
+            }
+
+            $("#exportMessage").empty();
+
+            try {
+                const res = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                });
+
+                if (!res.ok) {
+                    throw new Error("Export failed: " + res.status);
+                }
+
+                const blob = await res.blob();
+                const downloadUrl = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = downloadUrl;
+                a.download = "Employees.xlsx";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(downloadUrl);
+            } catch (error) {
+                employeeUi.renderAlert("#exportMessage", "danger", error.message);
+            }
+        }
+
+        $(function () {
+            $("#btnExport").on("click", exportEmployees);
+        });
+    </script>
+}

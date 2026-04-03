@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Employee Directory";
+    var employeeApiUrl = Url.Content("~/api/Emp?pageNumber=1&pageSize=100");
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0"><i class="bi bi-people-fill"></i> Employee Directory</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered text-center align-middle" id="employeeTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Image</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script>
+        $(document).ready(function () {
+            loadEmployees();
+        });
+
+        function loadEmployees() {
+            $.ajax({
+                url: '@employeeApiUrl',
+                type: 'GET',
+                success: function (data) {
+                    var tbody = $("#employeeTable tbody");
+                    tbody.empty();
+
+                    $.each(data, function (i, emp) {
+                        var imagePath = emp.imagePath ? emp.imagePath : '/uploads/default.jpg';
+
+                        var row = `<tr>
+                                    <td><img src="${imagePath}" class="img-thumbnail rounded-circle" width="60" height="60" alt="${emp.firstName ?? ''}" /></td>
+                                    <td>${emp.firstName ?? ''}</td>
+                                    <td>${emp.lastName ?? ''}</td>
+                                    <td><i class="bi bi-envelope-fill text-info"></i> ${emp.email ?? ''}</td>
+                                </tr>`;
+
+                        tbody.append(row);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    alert("Failed to load data: " + error);
+                }
+            });
+        }
+    </script>
+}

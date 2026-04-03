@@ -1,0 +1,102 @@
+@model int
+@{
+    ViewBag.Title = "Edit Employee";
+}
+
+<div class="card mx-auto" style="width: 450px;">
+    <div class="card-header bg-warning text-white">
+        Edit Employee
+    </div>
+    <form id="editForm" enctype="multipart/form-data" method="post">
+        <img id="empImg" class="card-img-top" src="" alt="Employee Image" style="height: 300px; object-fit: cover;" />
+        <div class="card-body">
+            <input type="hidden" id="empId" name="Id" value="@Model" />
+
+            <div id="editMessage"></div>
+
+            <div class="mb-2">
+                <label>First Name</label>
+                <input type="text" class="form-control" id="firstName" name="FirstName" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Last Name</label>
+                <input type="text" class="form-control" id="lastName" name="LastName" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Email</label>
+                <input type="email" class="form-control" id="email" name="Email" required />
+            </div>
+
+            <div class="mb-2">
+                <label>Age</label>
+                <input type="number" class="form-control" id="age" name="Age" min="1" max="100" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Change Image</label>
+                <input type="file" class="form-control" name="image" id="imageInput" />
+            </div>
+
+            <button type="submit" class="btn btn-success">Update</button>
+            <a href="/EmployeeUI/Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/employee-ui.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
+            const id = @Model;
+
+            $.ajax({
+                url: `/api/Emp/${id}`,
+                type: "GET"
+            }).done(function (emp) {
+                $("#empId").val(emp.id);
+                $("#firstName").val(emp.firstName);
+                $("#lastName").val(emp.lastName);
+                $("#email").val(emp.email);
+                $("#age").val(emp.age);
+                $("#empImg").attr("src", emp.imagePath || "/uploads/default.jpg");
+            }).fail(function (xhr) {
+                if (xhr.status === 401) {
+                    alert("Please log in first.");
+                    window.location.href = "/AuthenticationUI/Login";
+                    return;
+                }
+
+                employeeUi.renderAlert("#editMessage", "danger", employeeUi.readError(xhr, "Unable to load employee details."));
+            });
+
+            $("#editForm").on("submit", function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(this);
+                const employeeId = $("#empId").val();
+
+                $.ajax({
+                    url: `/api/Emp/${employeeId}`,
+                    type: "PUT",
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                }).done(function () {
+                    alert("Employee updated successfully!");
+                    window.location.href = "/EmployeeUI/Index";
+                }).fail(function (xhr) {
+                    if (xhr.status === 403) {
+                        alert("You are not an Admin.");
+                    } else if (xhr.status === 401) {
+                        alert("Please log in first.");
+                        window.location.href = "/AuthenticationUI/Login";
+                    } else {
+                        alert("Error: " + (xhr.responseText || xhr.statusText));
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,185 @@
+@{
+    ViewData["Title"] = "Employee Data";
+    var basicApiUrl = Url.Content("~/api/Emp/basic");
+    var exportApiUrl = Url.Content("~/api/Emp/export/excel");
+    var detailsTemplate = Url.Action("Details", "EmployeeUI", new { id = "__id__" }) ?? "/EmployeeUI/Details/__id__";
+    var editTemplate = Url.Action("Edit", "EmployeeUI", new { id = "__id__" }) ?? "/EmployeeUI/Edit/__id__";
+    var deleteTemplate = Url.Action("Delete", "EmployeeUI", new { id = "__id__" }) ?? "/EmployeeUI/Delete/__id__";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="mb-3">Employee Data</h3>
+        <form id="employeeSearchForm" class="row g-2">
+            <div class="col-md-6">
+                <input type="text" id="searchText" class="form-control" placeholder="Search by first name, last name or email" />
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+            <div class="col-auto">
+                <button type="button" id="clearBtn" class="btn btn-secondary">Clear</button>
+            </div>
+            <div class="col-auto">
+                <button type="button" id="exportBtn" class="btn btn-success">Export Excel</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-body">
+        <div id="listMessage"></div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeRows">
+                    <tr>
+                        <td colspan="5" class="text-center">Loading employees...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <button type="button" id="prevPageBtn" class="btn btn-outline-primary">Previous</button>
+        <span id="pageIndicator">Page 1</span>
+        <button type="button" id="nextPageBtn" class="btn btn-outline-primary">Next</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/employee-ui.js" asp-append-version="true"></script>
+    <script>
+        const employeeListApiUrl = '@basicApiUrl';
+        const employeeExportApiUrl = '@exportApiUrl';
+        const detailsTemplate = '@detailsTemplate';
+        const editTemplate = '@editTemplate';
+        const deleteTemplate = '@deleteTemplate';
+        const pageSize = 5;
+        let currentPage = 1;
+        let lastResponseCount = 0;
+
+        $(function () {
+            loadEmployees();
+
+            $("#employeeSearchForm").on("submit", function (event) {
+                event.preventDefault();
+                currentPage = 1;
+                loadEmployees();
+            });
+
+            $("#clearBtn").on("click", function () {
+                $("#searchText").val("");
+                currentPage = 1;
+                loadEmployees();
+            });
+
+            $("#prevPageBtn").on("click", function () {
+                if (currentPage > 1) {
+                    currentPage--;
+                    loadEmployees();
+                }
+            });
+
+            $("#nextPageBtn").on("click", function () {
+                if (lastResponseCount === pageSize) {
+                    currentPage++;
+                    loadEmployees();
+                }
+            });
+
+            $("#exportBtn").on("click", function () {
+                const searchTerm = $("#searchText").val().trim();
+                const url = searchTerm
+                    ? `${employeeExportApiUrl}?search=${encodeURIComponent(searchTerm)}`
+                    : employeeExportApiUrl;
+
+                if (!appAuth.getToken()) {
+                    window.location.href = "/AuthenticationUI/Login";
+                    return;
+                }
+
+                fetch(url, {
+                    headers: appAuth.getAuthHeaders()
+                })
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error("Unable to export employees.");
+                        }
+
+                        return response.blob();
+                    })
+                    .then(function (blob) {
+                        const downloadUrl = window.URL.createObjectURL(blob);
+                        const link = document.createElement("a");
+                        link.href = downloadUrl;
+                        link.download = "Employees.xlsx";
+                        document.body.appendChild(link);
+                        link.click();
+                        link.remove();
+                        window.URL.revokeObjectURL(downloadUrl);
+                    })
+                    .catch(function (error) {
+                        employeeUi.renderAlert("#listMessage", "danger", error.message);
+                    });
+            });
+        });
+
+        function loadEmployees() {
+            $("#listMessage").empty();
+
+            $.ajax({
+                url: employeeListApiUrl,
+                type: "GET",
+                data: {
+                    page: currentPage,
+                    pageSize: pageSize,
+                    search: $("#searchText").val().trim()
+                }
+            }).done(function (employees) {
+                lastResponseCount = employees.length;
+                renderEmployees(employees);
+                updatePager();
+            }).fail(function (xhr) {
+                $("#employeeRows").html('<tr><td colspan="5" class="text-center text-danger">Unable to load employees.</td></tr>');
+                employeeUi.renderAlert("#listMessage", "danger", employeeUi.readError(xhr, "Unable to load employees."));
+            });
+        }
+
+        function renderEmployees(employees) {
+            if (!employees.length) {
+                $("#employeeRows").html('<tr><td colspan="5" class="text-center">No data found.</td></tr>');
+                return;
+            }
+
+            const rows = employees.map(function (employee) {
+                return `
+                    <tr>
+                        <td><img src="${employeeUi.normalizeImage(employee.imageUrl)}" alt="Employee Image" class="employee-thumb" /></td>
+                        <td>${employeeUi.escapeHtml(employee.firstName)}</td>
+                        <td>${employeeUi.escapeHtml(employee.lastName)}</td>
+                        <td>${employeeUi.escapeHtml(employee.email)}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info" href="${employeeUi.buildRoute(detailsTemplate, employee.id)}">Details</a>
+                            <a class="btn btn-sm btn-warning" href="${employeeUi.buildRoute(editTemplate, employee.id)}">Edit</a>
+                            <a class="btn btn-sm btn-danger" href="${employeeUi.buildRoute(deleteTemplate, employee.id)}">Delete</a>
+                        </td>
+                    </tr>`;
+            }).join("");
+
+            $("#employeeRows").html(rows);
+        }
+
+        function updatePager() {
+            $("#pageIndicator").text(`Page ${currentPage}`);
+            $("#prevPageBtn").prop("disabled", currentPage === 1);
+            $("#nextPageBtn").prop("disabled", lastResponseCount < pageSize);
+        }
+    </script>
+}

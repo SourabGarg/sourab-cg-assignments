@@ -1,0 +1,84 @@
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="modal show d-block" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="registerForm" method="post">
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title">Register</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label>Username</label>
+                        <input type="text" name="username" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="d-block">Roles</label>
+                        <div class="form-check">
+                            <input class="form-check-input role-checkbox" type="checkbox" value="Admin" id="roleAdmin" />
+                            <label class="form-check-label" for="roleAdmin">Admin</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input role-checkbox" type="checkbox" value="HR" id="roleHr" />
+                            <label class="form-check-label" for="roleHr">HR</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input role-checkbox" type="checkbox" value="User" id="roleUser" />
+                            <label class="form-check-label" for="roleUser">User</label>
+                        </div>
+                        <div class="form-text">Select one or more roles for this user.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $("#registerForm").on("submit", function (e) {
+            e.preventDefault();
+
+            const user = {
+                username: $("input[name='username']").val(),
+                email: $("input[name='email']").val(),
+                password: $("input[name='password']").val(),
+                roles: $(".role-checkbox:checked").map(function () {
+                    return this.value;
+                }).get()
+            };
+
+            if (!user.roles.length) {
+                alert("Please select at least one role.");
+                return;
+            }
+
+            $.ajax({
+                url: "/api/Authentication/register",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(user),
+                success: function (res) {
+                    alert(typeof res === "string" ? res : (res.message || "User created successfully"));
+                    window.location.href = "/AuthenticationUI/Login";
+                },
+                error: function (xhr) {
+                    alert("Registration failed: " + xhr.responseText);
+                }
+            });
+        });
+    </script>
+}

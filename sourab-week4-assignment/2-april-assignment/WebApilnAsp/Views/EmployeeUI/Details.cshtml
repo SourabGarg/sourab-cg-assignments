@@ -1,0 +1,53 @@
+@model int
+@{
+    ViewData["Title"] = "Employee Details";
+    var employeeApiRoot = Url.Content("~/api/Emp");
+    var editTemplate = Url.Action("Edit", "EmployeeUI", new { id = "__id__" }) ?? "/EmployeeUI/Edit/__id__";
+    var deleteTemplate = Url.Action("Delete", "EmployeeUI", new { id = "__id__" }) ?? "/EmployeeUI/Delete/__id__";
+    var indexUrl = Url.Action("Index", "EmployeeUI") ?? "/EmployeeUI";
+}
+
+<h3 class="mb-3">Employee Details</h3>
+<div id="detailsMessage"></div>
+<div id="detailsHost"></div>
+
+@section Scripts {
+    <script src="~/js/employee-ui.js" asp-append-version="true"></script>
+    <script>
+        const employeeId = @Model;
+        const employeeApiUrl = '@employeeApiRoot/' + employeeId;
+        const editTemplate = '@editTemplate';
+        const deleteTemplate = '@deleteTemplate';
+        const indexUrl = '@indexUrl';
+
+        $(function () {
+            $.get(employeeApiUrl)
+                .done(function (employee) {
+                    $("#detailsHost").html(`
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>${employeeUi.escapeHtml((employee.firstName || "") + " " + (employee.lastName || ""))}</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <img src="${employeeUi.normalizeImage(employee.imagePath)}" alt="Employee Image" class="employee-image" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p><strong>Email:</strong> ${employeeUi.escapeHtml(employee.email)}</p>
+                                        <p><strong>Age:</strong> ${employeeUi.escapeHtml(employee.age)}</p>
+                                        <p><strong>Image URL:</strong> ${employeeUi.escapeHtml(employee.imagePath)}</p>
+                                        <a class="btn btn-warning" href="${employeeUi.buildRoute(editTemplate, employee.id)}">Edit</a>
+                                        <a class="btn btn-danger" href="${employeeUi.buildRoute(deleteTemplate, employee.id)}">Delete</a>
+                                        <a class="btn btn-secondary" href="${indexUrl}">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`);
+                })
+                .fail(function (xhr) {
+                    employeeUi.renderAlert("#detailsMessage", "danger", employeeUi.readError(xhr, "Unable to load employee details."));
+                });
+        });
+    </script>
+}
