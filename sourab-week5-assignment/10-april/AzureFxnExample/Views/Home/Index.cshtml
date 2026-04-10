@@ -1,0 +1,39 @@
+﻿@model SalesRequest
+
+@if (TempData["Message"] != null)
+{
+    <div style="padding: 10px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
+        @TempData["Message"]
+    </div>
+}
+
+<div style="max-width: 500px; margin: 0 auto; padding: 20px;">
+    <h1>Job Application Form</h1>
+    <p>Please enter your details below:</p>
+
+    <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+        <div style="margin-bottom: 15px;">
+            <label>Name:</label>
+            <input asp-for="Name" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Email:</label>
+            <input asp-for="Email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Phone:</label>
+            <input asp-for="Phone" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Upload Resume:</label>
+            <input type="file" name="file" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+            Apply
+        </button>
+    </form>
+</div>
